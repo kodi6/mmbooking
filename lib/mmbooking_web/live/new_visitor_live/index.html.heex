@@ -1,0 +1,29 @@
+<.simple_form
+  :let={f}
+  for={:email_form}
+  id="email-form"
+  phx-submit="save"
+  >
+    <%!-- <.input field={{f, :email}} type="email" name="email" value="" label="Email" /> --%>
+    <.input field={{f, :first_name}} type="text" name="firstname" value="" label="First name" />
+    <%!-- <.input field={{f, :last_name}} type="text" name="lastname" value="" label="Last name" />
+    <.input field={{f, :dob}} type="date" name="dob" value="" label="Date of birth" />
+    <.input field={{f, :country}} type="text" name="country" value="" label="Country" />
+    <.input field={{f, :city}} type="text" name="city" value="" label="city" />
+    <.input field={{f, :last_visit}} type="text" name="lastvisit" value="" label="Last visit" />
+   
+
+  <.input field={{f, :preferred_date}} type="date" name="preferreddate" value="" label="Preferred date" />
+  <.input field={{f, :alternate_date}} type="date" name="alternatedate" value="" label="Alternate date" />
+  <.input field={{f, :arrival_date}} type="date" name="arrivaldate" value="" label="Arrival date" />
+  <.input field={{f, :departure_date}} type="date" name="departure" value="" label="departure date" />
+  <.input field={{f, :note}} type="textarea" name="note" value="" label="Note" /> --%>
+  <.button>next</.button>
+
+</.simple_form>
+
+
+
+
+
+ 
