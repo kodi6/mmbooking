@@ -19,7 +19,9 @@ defmodule MmbookingWeb.Router do
 
     get "/", PageController, :home
     live "/mmaccess", WelcomeLive.Index, :index
-    live "/mmaccess/new_visitor", NewVisitorLive.Index, :index
+    live "/mmaccess/new_visit", NewVisitorLive.Index, :index
+    live "/mmaccess/submission_successful", SubmissionLive.Index, :index
+
 
   end
 
