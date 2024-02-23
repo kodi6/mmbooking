@@ -32,8 +32,8 @@ defmodule Mmbooking.Visitor.Visitor do
 
   def step1_changeset(visitor, attrs) do
     visitor
-    |> cast(attrs, [:first_name, :last_name, :dob, :country, :city, :last_visit, :visited])
-    |> validate_required([:first_name, :last_name, :dob, :country, :city, :visited])
+    |> cast(attrs, [:email, :first_name, :last_name, :dob, :country, :city, :last_visit, :visited])
+    |> validate_required([:email, :first_name, :last_name, :dob, :country, :city, :visited])
   end
 
   def step2_changeset(visitor, attrs) do

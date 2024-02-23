@@ -13,6 +13,7 @@ defmodule MmbookingWeb.NewVisitorLive.VisitorFormComponent do
           phx-change="validate"
           phx-submit="save"
         >
+          <.input field={@form[:email]} type="email" label="email" value={@visitor_email} />
           <.input field={@form[:first_name]} type="text" label="First Name" value="gfiugrir" required />
           <.input field={@form[:last_name]} type="text" label="Last Name" value="gfiugrir" required />
           <.input field={@form[:dob]} type="date" label="Dob Of Birth"  required />

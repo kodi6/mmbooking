@@ -39,7 +39,7 @@ defmodule MmbookingWeb.WelcomeLive.Index do
       else
         {:noreply,
         socket
-        |> push_redirect(to: ~p"/mmaccess/new_visit")
+        |> push_redirect(to: ~p"/mmaccess/new_visit/?visitor_email=#{email}")
         |> assign(:email, email)}
       end
 

@@ -15,8 +15,8 @@ defmodule MmbookingWeb.NewVisitorLive.PreviewFormComponent do
           phx-submit="save"
         >
 
-
-        <.input field={@form[:first_name]} type="text" label="First Name" value={@personal.first_name} readonly/>
+          <.input field={@form[:email]} type="email" label="email" value={@visitor_email} />
+          <.input field={@form[:first_name]} type="text" label="First Name" value={@personal.first_name} readonly/>
           <.input field={@form[:last_name]} type="text" label="Last Name" value={@personal.last_name}/>
           <.input field={@form[:dob]} type="date" label="Dob Of Birth" value={@personal.dob} />
           <.input field={@form[:country]} type="text" label="Country" value={@personal.country} />
