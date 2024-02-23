@@ -59,7 +59,6 @@ defmodule MmbookingWeb.NewVisitorLive.VisitorFormComponent do
       |> Map.put(:action, :validate)
 
       visited = Map.get(visitor_params, "visited")
-      IO.inspect(visited, label: "visited")
 
       visited = case visited do
         "Yes" -> true

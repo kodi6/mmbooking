@@ -21,6 +21,7 @@ defmodule MmbookingWeb.Router do
     live "/mmaccess", WelcomeLive.Index, :index
     live "/mmaccess/new_visit", NewVisitorLive.Index, :index
     live "/mmaccess/submission_successful", SubmissionLive.Index, :index
+    live "/mmaccess/visitor_page", VisitorHomeLive.Index, :index
 
 
   end

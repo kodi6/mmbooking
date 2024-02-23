@@ -26,4 +26,7 @@ defmodule Mmbooking.Visitors do
   end
 
 
+  def list_email do
+    Enum.map(Repo.all(Visitor), fn visitor -> visitor.email end)
+  end
 end
