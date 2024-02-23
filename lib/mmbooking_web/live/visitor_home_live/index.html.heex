@@ -4,11 +4,13 @@
 <.table
   id="users"
   rows={@visitors}
-  row_click={fn visitor -> JS.navigate(~p"/") end}
+  row_click={fn visitor -> JS.navigate(~p"/mmaccess/visitor_page/personal_details/#{visitor.id}") end}
 >
   <:col :let={visitor} label="Name"><%= visitor.first_name %></:col>
   <:col :let={visitor} label="Age"><%= visitor.last_name %></:col>
-    <div class="sr-only">
-      <.link navigate={~p"/"}>Show</.link>
+  <:action :let={visitor}>
+    <div class="">
+      <.link navigate={~p"/mmaccess/visitor_page/personal_details/#{visitor.id}"}>Show</.link>
     </div>  
+    </:action>
 </.table>

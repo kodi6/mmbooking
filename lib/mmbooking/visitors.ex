@@ -36,5 +36,9 @@ defmodule Mmbooking.Visitors do
     |> Repo.all()
   end
 
+  def get_visitor_by_id(id) do
+    Repo.get!(Visitor, id)
+  end
+
 
 end
