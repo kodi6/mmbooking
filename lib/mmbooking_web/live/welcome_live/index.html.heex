@@ -1,0 +1,11 @@
+    <div>
+      <.simple_form :let={f} for={:email_form} id="email-form" phx-submit="save">
+      <.input name="email" field={{f, :email}} type="email"  value={@email}  placeholder="Email address" required/>
+      <.input name="checkbox" type="checkbox" />
+      <%= if @is_selected do %>
+      <.warning_message message="People who can report at the Auroville Visitor Center between 8:15 to 8:30 am can only request a booking.">
+      </.warning_message>
+      <% end %>
+      <.button  phx-disable-with="Saving...">Get form</.button>
+      </.simple_form>
+    </div>

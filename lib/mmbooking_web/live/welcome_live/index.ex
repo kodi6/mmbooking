@@ -4,21 +4,6 @@ defmodule MmbookingWeb.WelcomeLive.Index do
 
   alias Mmbooking.Visitors
 
-  def render(assigns) do
-    ~H"""
-    <div>
-      <.simple_form :let={f} for={:email_form} id="email-form" phx-submit="save">
-      <.input name="email" field={{f, :email}} type="email"  value={@email}  placeholder="Email address" required/>
-      <.input name="checkbox" type="checkbox" />
-      <%= if @is_selected do %>
-      <.warning_message message="People who can report at the Auroville Visitor Center between 8:15 to 8:30 am can only request a booking.">
-      </.warning_message>
-      <% end %>
-      <.button  phx-disable-with="Saving...">Get form</.button>
-      </.simple_form>
-    </div>
-    """
-  end
 
 
   def mount(_params, _session, socket) do
@@ -34,7 +19,7 @@ defmodule MmbookingWeb.WelcomeLive.Index do
       if email in emails do
         {:noreply,
         socket
-        |> push_redirect(to: ~p"/mmaccess/visitor_page")
+        |> push_redirect(to: ~p"/mmaccess/visitor_page?visitor_email=#{email}")
         |> assign(:email, email)}
       else
         {:noreply,

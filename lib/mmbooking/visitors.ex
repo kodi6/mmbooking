@@ -29,4 +29,12 @@ defmodule Mmbooking.Visitors do
   def list_email do
     Enum.map(Repo.all(Visitor), fn visitor -> visitor.email end)
   end
+
+  def get_visitors_by_email(email) do
+    Visitor
+    |> where(email: ^email)
+    |> Repo.all()
+  end
+
+
 end

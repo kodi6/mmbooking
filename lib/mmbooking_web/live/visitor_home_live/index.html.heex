@@ -1,0 +1,14 @@
+
+
+<%= @visitor_email %>
+<.table
+  id="users"
+  rows={@visitors}
+  row_click={fn visitor -> JS.navigate(~p"/") end}
+>
+  <:col :let={visitor} label="Name"><%= visitor.first_name %></:col>
+  <:col :let={visitor} label="Age"><%= visitor.last_name %></:col>
+    <div class="sr-only">
+      <.link navigate={~p"/"}>Show</.link>
+    </div>  
+</.table>
