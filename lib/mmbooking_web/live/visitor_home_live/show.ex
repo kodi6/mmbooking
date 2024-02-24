@@ -20,4 +20,19 @@ defmodule MmbookingWeb.VisitorHomeLive.Show do
     socket
     |> assign(:visitor, visitor)}
   end
+
+  def handle_params(params, _url, socket) do
+    {:noreply, apply_action(socket, socket.assigns.live_action, params)}
+  end
+
+  defp apply_action(socket, :show, _params) do
+    socket
+  end
+
+  defp apply_action(socket, :edit, %{"id" => id}) do
+    socket
+    |> assign(:page_title, "Edit User")
+    |> assign(:visitor, Visitors.get_visitor_by_id(id))
+  end
+
 end

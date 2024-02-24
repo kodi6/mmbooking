@@ -23,6 +23,8 @@ defmodule MmbookingWeb.Router do
     live "/mmaccess/submission_successful", SubmissionLive.Index, :index
     live "/mmaccess/visitor_page", VisitorHomeLive.Index, :index
     live "/mmaccess/visitor_page/personal_details/:id", VisitorHomeLive.Show, :show
+    live "/mmaccess/visitor_page/personal_details/:id/edit", VisitorHomeLive.Show, :edit
+
 
   end
 

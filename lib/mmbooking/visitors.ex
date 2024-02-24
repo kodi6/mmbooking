@@ -40,5 +40,11 @@ defmodule Mmbooking.Visitors do
     Repo.get!(Visitor, id)
   end
 
+  def update_visitor(%Visitor{} = visitor, attrs) do
+    visitor
+    |> Visitor.step1_changeset(attrs)
+    |> Repo.update()
+  end
+
 
 end
