@@ -3,6 +3,7 @@ defmodule MmbookingWeb.VisitorHomeLive.Show do
 
 
   alias Mmbooking.Visitors
+
   def mount(params, _session, socket) do
     id = Map.get(params, "id")
     visitor = Visitors.get_visitor_by_id(id)
@@ -10,21 +11,13 @@ defmodule MmbookingWeb.VisitorHomeLive.Show do
     {:ok,
     socket
     |> assign(:visitor, visitor)
-    |> assign(:visitors, visitors)
-  }
+    |> assign(:visitors, visitors)}
   end
-
-
-
 
   def handle_event("change_name", %{"first_name" => first_name}, socket) do
     visitor = List.first(Enum.filter(socket.assigns.visitors, fn visitor -> visitor.first_name == first_name end))
-
-
-
     {:noreply,
     socket
-    |> assign(:visitor, visitor)
-  }
+    |> assign(:visitor, visitor)}
   end
 end
