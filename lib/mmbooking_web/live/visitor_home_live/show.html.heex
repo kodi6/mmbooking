@@ -1,4 +1,12 @@
 
+    <div>
+      <.simple_form :let={f} for={:name_form} id="name-form" phx-change="change_name">
+      <.input name="first_name" field={{f, :first_name}} type="select"  value={@visitor.first_name} options={Enum.map(@visitors, fn visitor -> visitor.first_name end)} required/>
+      </.simple_form>
+    </div>
+
+
+
 <label for="First Name" class="block text-sm font-medium leading-6 text-gray-900">First Name</label> <%= @visitor.first_name %>
 <label for="Last Name" class="block text-sm font-medium leading-6 text-gray-900">First Name</label> <%= @visitor.last_name %>
 <label for="Date Of birth" class="block text-sm font-medium leading-6 text-gray-900">First Name</label> <%= @visitor.dob %>
