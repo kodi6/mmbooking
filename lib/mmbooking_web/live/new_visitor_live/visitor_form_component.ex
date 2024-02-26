@@ -14,11 +14,11 @@ defmodule MmbookingWeb.NewVisitorLive.VisitorFormComponent do
           phx-submit="save"
         >
           <.input field={@form[:email]} type="email" label="email" value={@visitor_email} />
-          <.input field={@form[:first_name]} type="text" label="First Name" value="gfiugrir" required />
-          <.input field={@form[:last_name]} type="text" label="Last Name" value="gfiugrir" required />
+          <.input field={@form[:first_name]} type="text" label="First Name" required />
+          <.input field={@form[:last_name]} type="text" label="Last Name" required />
           <.input field={@form[:dob]} type="date" label="Dob Of Birth"  required />
-          <.input field={@form[:country]} type="text" label="Country" value="gfiugrir" required />
-          <.input field={@form[:city]} type="text" label="City" value="gfiugrir" required />
+          <.input field={@form[:country]} type="text" label="Country" required />
+          <.input field={@form[:city]} type="text" label="City" required />
 
           <.input field={@form[:visited]}
             type="select"

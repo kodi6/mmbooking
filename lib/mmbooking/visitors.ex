@@ -46,7 +46,7 @@ defmodule Mmbooking.Visitors do
     |> Repo.update()
   end
 
-  def update_changeset(%Visitor{} = visitor, attrs) do
+  def update_visitor(%Visitor{} = visitor, attrs) do
     visitor
     |> Visitor.changeset(attrs)
     |> Repo.update()

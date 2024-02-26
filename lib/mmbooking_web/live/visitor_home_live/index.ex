@@ -13,4 +13,13 @@ alias Mmbooking.Visitors
   }
   end
 
+
+  def handle_event("radio", %{"id" => id}, socket) do
+
+  {:noreply,
+  socket
+  |> redirect(to: ~p"/mmaccess/visitor_page/personal_details/#{id}/bookings")
+  }
+  end
+
 end

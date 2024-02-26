@@ -28,11 +28,8 @@ defmodule MmbookingWeb.SubmissionLive.Index do
   end
 
   def mount(%{"id" => id}, _session, socket) do
-
     visitor = Visitors.get_visitor_by_id(id)
-    IO.inspect(visitor, label: "visitor")
-    update = Visitors.update_changeset(visitor, %{"status" => "Request sent"})
-    IO.inspect(update, label: "update")
+    update = Visitors.update_visitor(visitor, %{"status" => "Request sent"})
     {:ok, socket}
   end
 end

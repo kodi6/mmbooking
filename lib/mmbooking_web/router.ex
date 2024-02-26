@@ -24,7 +24,8 @@ defmodule MmbookingWeb.Router do
     live "/mmaccess/visitor_page", VisitorHomeLive.Index, :index
     live "/mmaccess/visitor_page/personal_details/:id", VisitorHomeLive.Show, :show
     live "/mmaccess/visitor_page/personal_details/:id/edit", VisitorHomeLive.Show, :edit
-
+    live "/mmaccess/visitor_page/personal_details/:id/bookings", BookingLive.Index, :index
+    live "/mmaccess/visitor_page/personal_details/:id/bookings/new_booking", BookingLive.Index, :edit
 
   end
 
