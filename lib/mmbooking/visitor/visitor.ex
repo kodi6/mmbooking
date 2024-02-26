@@ -2,6 +2,10 @@ defmodule Mmbooking.Visitor.Visitor do
   use Ecto.Schema
   import Ecto.Changeset
 
+
+
+  @primary_key {:id, :binary_id, autogenerate: true}
+  @foreign_key_type :binary_id
   schema "visitors" do
     field :status, :string
     field :visited, :string
@@ -26,17 +30,17 @@ defmodule Mmbooking.Visitor.Visitor do
   @doc false
   def changeset(visitor, attrs) do
     visitor
-    |> cast(attrs, [:email, :first_name, :last_name, :dob, :country, :city, :visited, :last_visit, :preferred_date, :alternate_date, :arrival_date, :departure_date, :note, :status])
+    |> cast(attrs, [:email, :first_name, :last_name, :dob, :country, :city, :visited, :last_visit, :preferred_date, :alternate_date, :arrival_date, :departure_date, :note, :status, :stay])
   end
 
 
-  def step1_changeset(visitor, attrs) do
+  def personal_changeset(visitor, attrs) do
     visitor
     |> cast(attrs, [:email, :first_name, :last_name, :dob, :country, :city, :last_visit, :visited])
     |> validate_required([:email, :first_name, :last_name, :dob, :country, :city])
   end
 
-  def step2_changeset(visitor, attrs) do
+  def booking_changeset(visitor, attrs) do
     visitor
     |> cast(attrs, [:preferred_date, :alternate_date, :arrival_date, :departure_date, :note, :stay])
     |> validate_required([:preferred_date, :alternate_date, :arrival_date, :departure_date, :note, :stay])

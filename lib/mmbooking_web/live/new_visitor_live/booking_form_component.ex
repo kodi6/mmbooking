@@ -50,7 +50,7 @@ defmodule MmbookingWeb.NewVisitorLive.BookingFormComponent do
   def handle_event("validate", %{"visitor" => visitor_params}, socket) do
     booking_changeset =
       socket.assigns.visitor
-      |> Visitors.change_step2_changeset(visitor_params)
+      |> Visitors.change_booking_changeset(visitor_params)
       |> Map.put(:action, :validate)
 
     {:noreply, assign_form(socket, booking_changeset)}
@@ -61,7 +61,7 @@ defmodule MmbookingWeb.NewVisitorLive.BookingFormComponent do
   def handle_event("save", %{"visitor" => visitor_params}, socket) do
     booking_changeset =
       socket.assigns.visitor
-      |> Visitors.change_step2_changeset(visitor_params)
+      |> Visitors.change_booking_changeset(visitor_params)
       |> Map.put(:action, :validate)
 
 

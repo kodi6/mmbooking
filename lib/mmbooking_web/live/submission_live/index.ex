@@ -1,6 +1,8 @@
 defmodule MmbookingWeb.SubmissionLive.Index do
   use MmbookingWeb, :live_view
 
+
+  alias Mmbooking.Visitors
   def render(assigns) do
     ~H"""
     <div>
@@ -23,5 +25,14 @@ defmodule MmbookingWeb.SubmissionLive.Index do
       </div>
     </div>
     """
+  end
+
+  def mount(%{"id" => id}, _session, socket) do
+
+    visitor = Visitors.get_visitor_by_id(id)
+    IO.inspect(visitor, label: "visitor")
+    update = Visitors.update_changeset(visitor, %{"status" => "Request sent"})
+    IO.inspect(update, label: "update")
+    {:ok, socket}
   end
 end

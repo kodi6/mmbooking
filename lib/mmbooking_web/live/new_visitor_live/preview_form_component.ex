@@ -67,10 +67,12 @@ defmodule MmbookingWeb.NewVisitorLive.PreviewFormComponent do
     case Visitors.create_visitor(visitor_params) do
       {:ok, visitor} ->
 
+
+
         {:noreply,
          socket
          |> assign(:visitor, visitor)
-         |> push_navigate(to: ~p"/mmaccess/submission_successful")}
+         |> push_navigate(to: ~p"/mmaccess/submission_successful?id=#{visitor.id}")}
 
 
 

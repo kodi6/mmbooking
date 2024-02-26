@@ -17,7 +17,7 @@ alias Mmbooking.Visitors
           <.input field={@form[:country]} type="text" label="Country"  required />
           <.input field={@form[:city]} type="text" label="City"  required />
           <:actions>
-            <.button phx-disable-with="Saving...">Next</.button>
+            <.button phx-disable-with="Saving...">Save</.button>
           </:actions>
       </.simple_form>
     </div>
@@ -27,7 +27,7 @@ alias Mmbooking.Visitors
 
   @impl true
   def update(%{visitor: visitor} = assigns, socket) do
-    changeset = Visitors.change_step1_changeset(visitor)
+    changeset = Visitors.change_personal_changeset(visitor)
     {:ok,
      socket
      |> assign(assigns)
@@ -39,7 +39,7 @@ alias Mmbooking.Visitors
 
 
   def handle_event("edit", %{"visitor" => visitor_params}, socket) do
-    case Visitors.update_visitor(socket.assigns.visitor, visitor_params) do
+    case Visitors.update_visitor_personal(socket.assigns.visitor, visitor_params) do
       {:ok, _user} ->
 
         {:noreply,

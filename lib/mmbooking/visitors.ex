@@ -6,12 +6,12 @@ defmodule Mmbooking.Visitors do
   alias Mmbooking.Visitor.Visitor
 
 
-  def change_step1_changeset(%Visitor{} = visitor, attrs \\ %{}) do
-    Visitor.step1_changeset(visitor, attrs)
+  def change_personal_changeset(%Visitor{} = visitor, attrs \\ %{}) do
+    Visitor.personal_changeset(visitor, attrs)
   end
 
-  def change_step2_changeset(%Visitor{} = visitor, attrs \\ %{}) do
-    Visitor.step2_changeset(visitor, attrs)
+  def change_booking_changeset(%Visitor{} = visitor, attrs \\ %{}) do
+    Visitor.booking_changeset(visitor, attrs)
   end
 
 
@@ -40,9 +40,15 @@ defmodule Mmbooking.Visitors do
     Repo.get!(Visitor, id)
   end
 
-  def update_visitor(%Visitor{} = visitor, attrs) do
+  def update_visitor_personal(%Visitor{} = visitor, attrs) do
     visitor
-    |> Visitor.step1_changeset(attrs)
+    |> Visitor.personal_changeset(attrs)
+    |> Repo.update()
+  end
+
+  def update_changeset(%Visitor{} = visitor, attrs) do
+    visitor
+    |> Visitor.changeset(attrs)
     |> Repo.update()
   end
 

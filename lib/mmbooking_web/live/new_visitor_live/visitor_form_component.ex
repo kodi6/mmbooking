@@ -56,7 +56,7 @@ defmodule MmbookingWeb.NewVisitorLive.VisitorFormComponent do
   def handle_event("validate", %{"visitor" => visitor_params}, socket) do
     personal_changeset =
       socket.assigns.visitor
-      |> Visitors.change_step1_changeset(visitor_params)
+      |> Visitors.change_personal_changeset(visitor_params)
       |> Map.put(:action, :validate)
 
       visited = Map.get(visitor_params, "visited")
@@ -78,7 +78,7 @@ defmodule MmbookingWeb.NewVisitorLive.VisitorFormComponent do
   def handle_event("save", %{"visitor" => visitor_params}, socket) do
     personal_changeset =
       socket.assigns.visitor
-      |> Visitors.change_step1_changeset(visitor_params)
+      |> Visitors.change_personal_changeset(visitor_params)
       |> Map.put(:action, :validate)
 
       send(self(), {:update_step, 1})
