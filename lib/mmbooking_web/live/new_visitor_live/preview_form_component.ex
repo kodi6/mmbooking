@@ -52,8 +52,7 @@ defmodule MmbookingWeb.NewVisitorLive.PreviewFormComponent do
      |> assign(:personal, assigns.personal_changeset.changes)
      |> assign(:booking, assigns.booking_changeset.changes)
      |> assign(assigns)
-     |> assign_form(assigns.preview_changeset)
-     }
+     |> assign_form(assigns.preview_changeset)}
   end
 
 
@@ -61,21 +60,14 @@ defmodule MmbookingWeb.NewVisitorLive.PreviewFormComponent do
     assign(socket, :form, to_form(changeset))
   end
 
-
   @impl true
   def handle_event("save", %{"visitor" => visitor_params}, socket) do
     case Visitors.create_visitor(visitor_params) do
       {:ok, visitor} ->
-
-
-
         {:noreply,
          socket
          |> assign(:visitor, visitor)
          |> push_navigate(to: ~p"/mmaccess/submission_successful?id=#{visitor.id}")}
-
-
-
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, :preview_changeset, changeset)}
     end

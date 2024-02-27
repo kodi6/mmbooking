@@ -1,7 +1,6 @@
 
 
 <%= case @step do%>
-
   <% 0 -> %>
   <.live_component
     module={MmbookingWeb.NewVisitorLive.VisitorFormComponent}
@@ -10,8 +9,6 @@
     visitor={@visitor}
     is_visited?={@is_visited?}
     visitor_email={@visitor_email}
-
-
   />
 
   <% 1 -> %>
@@ -22,9 +19,6 @@
     booking_changeset={@booking_changeset}
     visitor={@visitor}
   />
-
-
-
 
   <% 2 -> %>
   <.live_component

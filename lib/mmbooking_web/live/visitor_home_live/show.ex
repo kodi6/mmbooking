@@ -4,8 +4,7 @@ defmodule MmbookingWeb.VisitorHomeLive.Show do
 
   alias Mmbooking.Visitors
 
-  def mount(params, _session, socket) do
-    id = Map.get(params, "id")
+  def mount(%{"id" => id}, _session, socket) do
     visitor = Visitors.get_visitor_by_id(id)
     visitors = Visitors.get_visitors_by_email(visitor.email)
     {:ok,

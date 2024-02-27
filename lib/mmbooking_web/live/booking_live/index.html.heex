@@ -2,20 +2,17 @@ Name: <%= @visitor.first_name%> -------
 Status: <%= @visitor.status%>----
 ID: <%= @visitor.id%>
 
-
-
- <.link patch={~p"/mmaccess/visitor_page/personal_details/#{@visitor.id}/bookings/new_booking"}>
-    <.button>New Booking</.button>
-  </.link>
-
+<.link patch={~p"/mmaccess/visitor_page/personal_details/#{@visitor.id}/bookings/new_booking"}>
+  <.button>New Booking</.button>
+</.link>
 
 <.modal :if={@live_action in [:edit]} id="booking-modal" show on_cancel={JS.patch(~p"/mmaccess/visitor_page/personal_details/#{@visitor.id}/bookings")}>
   <.live_component
-    module={MmbookingWeb.BookingLive.SelfBookingFormComponent}
-    id={@visitor.id}
-    title={@page_title}
-    action={@live_action}
-    visitor={@visitor}
-    patch={~p"/mmaccess/visitor_page/personal_details/#{@visitor.id}/bookings"}
+  module={MmbookingWeb.BookingLive.SelfBookingFormComponent}
+  id={@visitor.id}
+  title={@page_title}
+  action={@live_action}
+  visitor={@visitor}
+  patch={~p"/mmaccess/visitor_page/personal_details/#{@visitor.id}/bookings"}
   />
 </.modal>

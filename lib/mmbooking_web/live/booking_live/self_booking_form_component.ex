@@ -1,7 +1,7 @@
 defmodule MmbookingWeb.BookingLive.SelfBookingFormComponent do
   use MmbookingWeb, :live_component
 
-alias Mmbooking.Visitors
+  alias Mmbooking.Visitors
   def render(assigns) do
     ~H"""
     <div>
@@ -17,8 +17,6 @@ alias Mmbooking.Visitors
           <.input field={@form[:arrival_date]} type="date" label="Arrival Date" value={} required/>
           <.input field={@form[:departure_date]} type="date" label="Departure Date" value={} required/>
           <.input field={@form[:note]} type="textarea" label="Note" value={} required/>
-
-
           <:actions>
           <.link phx-click="back-personal" phx-target={@myself}>
             <.button>Back</.button>
@@ -29,7 +27,6 @@ alias Mmbooking.Visitors
     </div>
     """
   end
-
 
   def update(%{visitor: visitor} = assigns, socket) do
     changeset = Visitors.change_visitor(visitor)
@@ -68,9 +65,6 @@ alias Mmbooking.Visitors
         {:noreply, assign_form(socket, changeset)}
     end
   end
-
-
-
 
   defp assign_form(socket, %Ecto.Changeset{} = changeset) do
     assign(socket, :form, to_form(changeset))

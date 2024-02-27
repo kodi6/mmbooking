@@ -19,7 +19,6 @@ defmodule MmbookingWeb.NewVisitorLive.VisitorFormComponent do
           <.input field={@form[:dob]} type="date" label="Dob Of Birth"  required />
           <.input field={@form[:country]} type="text" label="Country" required />
           <.input field={@form[:city]} type="text" label="City" required />
-
           <.input field={@form[:visited]}
             type="select"
             label="Visited?"
@@ -27,12 +26,9 @@ defmodule MmbookingWeb.NewVisitorLive.VisitorFormComponent do
             options={[{"Yes", "Yes"}, {"No", "no"}]}
             required
           />
-            <%= if @is_visited? do %>
-          <.input field={@form[:last_visit]} type="text" label="Last visit" value="may 20" required/>
-
+           <%= if @is_visited? do %>
+             <.input field={@form[:last_visit]} type="text" label="Last visit" required/>
             <% end %>
-
-
           <:actions>
             <.button phx-disable-with="Saving...">Next</.button>
           </:actions>
@@ -47,8 +43,7 @@ defmodule MmbookingWeb.NewVisitorLive.VisitorFormComponent do
     {:ok,
      socket
      |> assign(assigns)
-     |> assign_form(assigns.personal_changeset)
-     }
+     |> assign_form(assigns.personal_changeset)}
   end
 
 
@@ -65,8 +60,6 @@ defmodule MmbookingWeb.NewVisitorLive.VisitorFormComponent do
         "Yes" -> true
         _-> false
       end
-
-
     {:noreply,
     socket
     |> assign(:is_visited?, visited)
@@ -86,10 +79,6 @@ defmodule MmbookingWeb.NewVisitorLive.VisitorFormComponent do
 
     {:noreply, assign_form(socket, personal_changeset)}
   end
-
-
-
-
 
   defp assign_form(socket, %Ecto.Changeset{} = changeset) do
     assign(socket, :form, to_form(changeset))

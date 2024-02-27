@@ -6,9 +6,11 @@
   id="visitors"
   rows={@visitors}>
   <:col :let={visitor}><.input name="id" type="radio" value={visitor.id} /></:col>
-  <:col :let={visitor} label="Name"><div class="underline" phx-click={JS.navigate("/mmaccess/visitor_page/personal_details/#{visitor.id}")}><%= visitor.first_name %></div></:col>
+  <:col :let={visitor} label="Name"><.link class = "underline" navigate={~p"/mmaccess/visitor_page/personal_details/#{visitor.id}"}><%= visitor.first_name %></.link></:col>
   <:col :let={visitor} label="Age"><%= visitor.last_name %></:col>
   <:col :let={visitor} label="DOB"><%= visitor.dob %></:col>
 </.table>
 <.button phx-disable-with="loading">Booking</.button>
 </.simple_form>
+
+

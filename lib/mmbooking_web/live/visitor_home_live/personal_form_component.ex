@@ -31,12 +31,8 @@ alias Mmbooking.Visitors
     {:ok,
      socket
      |> assign(assigns)
-     |> assign_form(changeset)
-     }
+     |> assign_form(changeset)}
   end
-
-
-
 
   def handle_event("edit", %{"visitor" => visitor_params}, socket) do
     case Visitors.update_visitor_personal(socket.assigns.visitor, visitor_params) do
@@ -51,8 +47,6 @@ alias Mmbooking.Visitors
         {:noreply, assign_form(socket, changeset)}
     end
   end
-
-
 
   defp assign_form(socket, %Ecto.Changeset{} = changeset) do
     assign(socket, :form, to_form(changeset))

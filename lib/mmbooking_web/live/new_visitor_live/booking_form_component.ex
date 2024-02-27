@@ -19,8 +19,6 @@ defmodule MmbookingWeb.NewVisitorLive.BookingFormComponent do
           <.input field={@form[:arrival_date]} type="date" label="Arrival Date" required/>
           <.input field={@form[:departure_date]} type="date" label="Departure Date" required/>
           <.input field={@form[:note]} type="textarea" label="Note" required/>
-
-
           <:actions>
           <.link phx-click="back-personal" phx-target={@myself}>
             <.button>Back</.button>
@@ -32,19 +30,13 @@ defmodule MmbookingWeb.NewVisitorLive.BookingFormComponent do
     """
   end
 
-
-
-
-
   @impl true
   def update(assigns, socket) do
     {:ok,
      socket
      |> assign(assigns)
-     |> assign_form(assigns.booking_changeset)
-     }
+     |> assign_form(assigns.booking_changeset)}
   end
-
 
   @impl true
   def handle_event("validate", %{"visitor" => visitor_params}, socket) do
@@ -64,10 +56,8 @@ defmodule MmbookingWeb.NewVisitorLive.BookingFormComponent do
       |> Visitors.change_booking_changeset(visitor_params)
       |> Map.put(:action, :validate)
 
-
       send(self(), {:update_booking_changeset, booking_changeset})
       send(self(), {:update_step, 2})
-
 
     {:noreply, assign_form(socket, booking_changeset)}
   end
@@ -77,17 +67,11 @@ defmodule MmbookingWeb.NewVisitorLive.BookingFormComponent do
     send(self(), {:update_step, 0})
     send(self(), {:update_personal_changeset, socket.assigns.personal_changeset})
 
-
-
     {:noreply, socket |> assign(:step, 0)}
   end
-
-
 
   defp assign_form(socket, %Ecto.Changeset{} = changeset) do
     assign(socket, :form, to_form(changeset))
   end
-
-
 
 end
