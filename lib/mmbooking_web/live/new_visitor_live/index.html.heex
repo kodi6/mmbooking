@@ -1,0 +1,33 @@
+
+
+<%= case @step do%>
+  <% 0 -> %>
+  <.live_component
+    module={MmbookingWeb.NewVisitorLive.VisitorFormComponent}
+    id="visitor-form"
+    personal_changeset={@personal_changeset}
+    visitor={@visitor}
+    is_visited?={@is_visited?}
+    visitor_email={@visitor_email}
+  />
+
+  <% 1 -> %>
+ <.live_component
+    module={MmbookingWeb.NewVisitorLive.BookingFormComponent}
+    id="booking-form"
+    personal_changeset={@personal_changeset}
+    booking_changeset={@booking_changeset}
+    visitor={@visitor}
+  />
+
+  <% 2 -> %>
+  <.live_component
+    module={MmbookingWeb.NewVisitorLive.PreviewFormComponent}
+    id="booking-form"
+    preview_changeset={@preview_changeset}
+    personal_changeset={@personal_changeset}
+    booking_changeset={@booking_changeset}
+    visitor_email={@visitor_email}
+    visitor={@visitor}
+  />
+<% end %>  

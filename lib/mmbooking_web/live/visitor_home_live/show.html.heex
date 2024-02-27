@@ -1,0 +1,27 @@
+
+<div>
+  <.simple_form :let={f} for={:name_form} id="name-form" phx-change="change_name">
+  <.input name="first_name" field={{f, :first_name}} type="select"  value={@visitor.first_name} options={Enum.map(@visitors, fn visitor -> visitor.first_name end)} required/>
+  </.simple_form>
+</div>
+
+<label for="First Name" class="block text-sm font-medium leading-6 text-gray-900">First Name</label> <%= @visitor.first_name %>
+<label for="Last Name" class="block text-sm font-medium leading-6 text-gray-900">Last Name</label> <%= @visitor.last_name %>
+<label for="Date Of birth" class="block text-sm font-medium leading-6 text-gray-900">DOB</label> <%= @visitor.dob %>
+<label for="Email" class="block text-sm font-medium leading-6 text-gray-900">Email</label> <%= @visitor.email %>
+<label for="Country" class="block text-sm font-medium leading-6 text-gray-900">Country</label> <%= @visitor.country %>
+<label for="City" class="block text-sm font-medium leading-6 text-gray-900">City</label> <%= @visitor.city %>
+
+<.link patch={~p"/mmaccess/visitor_page/personal_details/#{@visitor.id}/edit"} phx-click={JS.push_focus()}>
+  <.button>Edit user</.button>
+</.link>
+
+<.modal :if={@live_action == :edit} id="personal-modal" show on_cancel={JS.patch(~p"/mmaccess/visitor_page/personal_details/#{@visitor.id}")}>
+  <.live_component
+    module={MmbookingWeb.VisitorHomeLive.PersonalFormComponent}
+    id={@visitor.id}
+    visitor={@visitor}
+    patch={~p"/mmaccess/visitor_page/personal_details/#{@visitor.id}"}
+
+  />
+</.modal>
