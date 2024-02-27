@@ -38,6 +38,10 @@ defmodule Mmbooking.Visitor.Visitor do
     visitor
     |> cast(attrs, [:email, :first_name, :last_name, :dob, :country, :city, :last_visit, :visited])
     |> validate_required([:email, :first_name, :last_name, :dob, :country, :city])
+    |> validate_length(:first_name, max: 20)
+    |> validate_length(:last_name, max: 20)
+    |> validate_length(:city, max: 30)
+    |> validate_length(:last_visit, max: 30)
   end
 
   def booking_changeset(visitor, attrs) do
