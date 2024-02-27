@@ -17,7 +17,7 @@ defmodule MmbookingWeb.NewVisitorLive.VisitorFormComponent do
           <.input field={@form[:first_name]} type="text" label="First Name" required />
           <.input field={@form[:last_name]} type="text" label="Last Name" required />
           <.input field={@form[:dob]} type="date" label="Dob Of Birth"  required />
-          <.input field={@form[:country]} type="text" label="Country" required />
+          <.input field={@form[:country]} type="select" label="Country" prompt="Select Country" options={Enum.map(Countries.all, fn country -> country.name end)} required />
           <.input field={@form[:city]} type="text" label="City" required />
           <.input field={@form[:visited]}
             type="select"
