@@ -48,8 +48,42 @@ defmodule Mmbooking.Visitor.Visitor do
     visitor
     |> cast(attrs, [:preferred_date, :alternate_date, :arrival_date, :departure_date, :note, :stay])
     |> validate_required([:preferred_date, :alternate_date, :arrival_date, :departure_date, :note, :stay])
+    |> arrival_date_check()
+    |> departure_date_check()
+  end
+
+  def arrival_date_check(booking_changeset) do
+      preferred_date = get_field(booking_changeset, :preferred_date)
+      alternate_date = get_field(booking_changeset, :alternate_date)
+      arrival_date = get_field(booking_changeset, :arrival_date)
+
+
+    if arrival_date != nil do
+      if Date.compare(preferred_date, arrival_date) == :gt or Date.compare(alternate_date, arrival_date) == :gt do
+        booking_changeset
+      else
+        add_error(booking_changeset, :arrival_date, "arrival date should be less than prefer date or alternat date")
+      end
+    else
+      booking_changeset
+    end
   end
 
 
+  def departure_date_check(booking_changeset) do
+    preferred_date = get_field(booking_changeset, :preferred_date)
+    alternate_date = get_field(booking_changeset, :alternate_date)
+    departure_date = get_field(booking_changeset, :departure_date)
+
+  if departure_date != nil and  preferred_date != nil do
+    if Date.compare(preferred_date, departure_date) == :lt or Date.compare(alternate_date, departure_date) == :lt do
+      booking_changeset
+    else
+      add_error(booking_changeset, :departure_date, "departure_date date should be more than prefer date or alternat date")
+    end
+  else
+    booking_changeset
+  end
+end
 
 end
