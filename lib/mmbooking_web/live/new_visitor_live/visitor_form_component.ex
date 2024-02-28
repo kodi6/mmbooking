@@ -13,13 +13,14 @@ defmodule MmbookingWeb.NewVisitorLive.VisitorFormComponent do
           phx-change="validate"
           phx-submit="save"
         >
-          <.input field={@form[:email]} type="email" label="email" value={@visitor_email} />
-          <.input field={@form[:first_name]} type="text" label="First Name" required />
-          <.input field={@form[:last_name]} type="text" label="Last Name" required />
-          <.input field={@form[:dob]} type="date" label="Dob Of Birth"  required />
-          <.input field={@form[:country]} type="select" label="Country" prompt="Select Country" options={Enum.map(Countries.all, fn country -> country.name end)} required />
-          <.input field={@form[:city]} type="text" label="City" required />
-          <.input field={@form[:visited]}
+          <div class="space-x-20"><span class="font-semibold">Email :</span> <span class="ml-6"><%= @visitor_email %></span></div>
+          <.custom_input field={@form[:email]} type="Email" label="Email:" value={@visitor_email} />
+          <.custom_input field={@form[:first_name]} type="text" label="First Name" required />
+          <.custom_input field={@form[:last_name]} type="text" label="Last Name" required />
+          <.custom_input field={@form[:dob]} type="date" label="Dob Of Birth"  required />
+          <.custom_input field={@form[:country]} type="select" label="Country" prompt="Select Country" options={Enum.map(Countries.all, fn country -> country.name end)} required />
+          <.custom_input field={@form[:city]} type="text" label="City" required />
+          <.custom_input field={@form[:visited]}
             type="select"
             label="Visited?"
             prompt="Select one"
@@ -27,7 +28,7 @@ defmodule MmbookingWeb.NewVisitorLive.VisitorFormComponent do
             required
           />
            <%= if @is_visited? do %>
-             <.input field={@form[:last_visit]} type="text" label="Last visit" required/>
+             <.custom_input field={@form[:last_visit]} type="text" label="Last visit" required/>
             <% end %>
           <:actions>
             <.button phx-disable-with="Saving...">Next</.button>

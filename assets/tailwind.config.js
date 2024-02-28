@@ -13,6 +13,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily:{
+        sueEllenFrancisco: ["Sue Ellen Francisco", "cursive"],
+        titilliumWeb: ["titillium-web-light"]
+      },
       colors: {
         brand: "#FD4F00",
       }

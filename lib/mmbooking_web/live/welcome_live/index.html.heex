@@ -1,11 +1,45 @@
-    <div>
-      <.simple_form :let={f} for={:email_form} id="email-form" phx-submit="save">
-      <.input name="email" field={{f, :email}} type="email"  value={@email}  placeholder="Email address" required/>
-      <.input name="checkbox" type="checkbox" />
-      <%= if @is_selected do %>
+<div class="bg-green space-y-5">
+  <div class="flex items-center">
+    <img class="h-8 w-8 mr-6" src={~p"/images/chev.svg"}  />
+    <p>The Inner Chamber is a place for silent concentration, and not a TOURIST site. People keen to concentrate only may apply.</p>
+  </div>
+
+   <div class="flex items-center">
+    <img class="h-8 w-8 mr-6" src={~p"/images/chev.svg"}  />
+    <p>Each individual visiting the Inner Chamber must fill one booking form. Booking is granted individually based on availability.</p>
+   </div>
+
+   <div class="flex items-center">
+    <img class="h-8 w-8 mr-6" src={~p"/images/chev.svg"}  />
+    <p>Please do NOT submit duplicate requests using different Email addresses.</p>
+  </div>
+
+  <div class="flex items-center">
+    <img class="h-8 w-8 mr-6" src={~p"/images/chev.svg"}  />
+    <p>Inner Chamber is closed on all Sundays and Tuesdays.</p>
+  </div>
+
+   <div class="flex items-center">
+    <img class="h-8 w-8 mr-6" src={~p"/images/chev.svg"}  />
+    <p>Children below 10 years are NOT permitted.</p>
+  </div>
+
+   <div class="flex items-center">
+    <img class="h-8 w-8 mr-6" src={~p"/images/chev.svg"}  />
+    <p>You must Report at Auroville Visitors Center between 8:15 and 8.30 am on the Day of your Visit.</p>
+  </div>
+</div>
+
+
+<div>
+  <.simple_form :let={f} for={:email_form} id="email-form" phx-submit="save">
+    <.input name="email" field={{f, :email}} type="email"  value={@email}  placeholder="Email address" required/>
+    <.input name="checkbox" type="checkbox" label="I Agree to Report between 8:15am to 8:30am"/>
+    <%= if @is_selected do %>
       <.warning_message message="People who can report at the Auroville Visitor Center between 8:15 to 8:30 am can only request a booking.">
       </.warning_message>
-      <% end %>
-      <.button  phx-disable-with="Saving...">Get form</.button>
-      </.simple_form>
-    </div>
+    <% end %>
+    <.button  phx-disable-with="Saving...">Get form</.button>
+  </.simple_form>
+</div>
+

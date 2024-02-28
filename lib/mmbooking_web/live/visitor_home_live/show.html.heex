@@ -1,7 +1,7 @@
 
 <div>
   <.simple_form :let={f} for={:name_form} id="name-form" phx-change="change_name">
-  <.input name="first_name" field={{f, :first_name}} type="select"  value={@visitor.first_name} options={Enum.map(@visitors, fn visitor -> visitor.first_name end)} required/>
+  <.custom_input name="first_name" field={{f, :first_name}} type="select"  value={@visitor.first_name} options={Enum.map(@visitors, fn visitor -> visitor.first_name end)} required/>
   </.simple_form>
 </div>
 

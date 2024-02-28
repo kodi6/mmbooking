@@ -13,12 +13,12 @@ defmodule MmbookingWeb.NewVisitorLive.BookingFormComponent do
           phx-change="validate"
           phx-submit="save"
         >
-          <.input field={@form[:preferred_date]} type="date" label="Preferred Date" required/>
-          <.input field={@form[:alternate_date]} type="date" label="Alternate Date" required/>
-          <.input field={@form[:stay]} type="text" label="Place" required/>
-          <.input field={@form[:arrival_date]} type="date" label="Arrival Date" required/>
-          <.input field={@form[:departure_date]} type="date" label="Departure Date" required/>
-          <.input field={@form[:note]} type="textarea" label="Note" required/>
+          <.custom_input field={@form[:preferred_date]} type="date" label="Preferred Date" required/>
+          <.custom_input field={@form[:alternate_date]} type="date" label="Alternate Date" required/>
+          <.custom_input field={@form[:stay]} type="text" label="Place" required/>
+          <.custom_input field={@form[:arrival_date]} type="date" label="Arrival Date" required/>
+          <.custom_input field={@form[:departure_date]} type="date" label="Departure Date" required/>
+          <.custom_input field={@form[:note]} type="textarea" label="Note" required/>
           <:actions>
           <.link phx-click="back-personal" phx-target={@myself}>
             <.button>Back</.button>

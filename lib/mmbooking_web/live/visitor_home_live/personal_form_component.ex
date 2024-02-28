@@ -10,12 +10,12 @@ alias Mmbooking.Visitors
           phx-target={@myself}
           phx-submit="edit"
         >
-          <.input field={@form[:email]} type="email" label="email"  />
-          <.input field={@form[:first_name]} type="text" label="First Name"  required />
-          <.input field={@form[:last_name]} type="text" label="Last Name"  required />
-          <.input field={@form[:dob]} type="date" label="Dob Of Birth"  required />
-          <.input field={@form[:country]} type="text" label="Country"  required />
-          <.input field={@form[:city]} type="text" label="City"  required />
+          <.custom_input field={@form[:email]} type="email" label="email"  />
+          <.custom_input field={@form[:first_name]} type="text" label="First Name"  required />
+          <.custom_input field={@form[:last_name]} type="text" label="Last Name"  required />
+          <.custom_input field={@form[:dob]} type="date" label="Dob Of Birth"  required />
+          <.custom_input field={@form[:country]} type="text" label="Country"  required />
+          <.custom_input field={@form[:city]} type="text" label="City"  required />
           <:actions>
             <.button phx-disable-with="Saving...">Save</.button>
           </:actions>

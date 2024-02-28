@@ -5,7 +5,7 @@
 <.table
   id="visitors"
   rows={@visitors}>
-  <:col :let={visitor}><.input name="id" type="radio" value={visitor.id} /></:col>
+  <:col :let={visitor}><.custom_input name="id" type="radio" value={visitor.id} /></:col>
   <:col :let={visitor} label="Name"><.link class = "underline" navigate={~p"/mmaccess/visitor_page/personal_details/#{visitor.id}"}><%= visitor.first_name %></.link></:col>
   <:col :let={visitor} label="Age"><%= visitor.last_name %></:col>
   <:col :let={visitor} label="DOB"><%= visitor.dob %></:col>

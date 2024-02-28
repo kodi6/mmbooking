@@ -11,12 +11,12 @@ defmodule MmbookingWeb.BookingLive.SelfBookingFormComponent do
           phx-change="validate"
           phx-submit="save"
         >
-          <.input field={@form[:preferred_date]} type="date" label="Preferred Date" value={} required/>
-          <.input field={@form[:alternate_date]} type="date" label="Alternate Date" value={} required/>
-          <.input field={@form[:stay]} type="text" label="Place" value={} required/>
-          <.input field={@form[:arrival_date]} type="date" label="Arrival Date" value={} required/>
-          <.input field={@form[:departure_date]} type="date" label="Departure Date" value={} required/>
-          <.input field={@form[:note]} type="textarea" label="Note" value={} required/>
+          <.custom_input field={@form[:preferred_date]} type="date" label="Preferred Date" value={} required/>
+          <.custom_input field={@form[:alternate_date]} type="date" label="Alternate Date" value={} required/>
+          <.custom_input field={@form[:stay]} type="text" label="Place" value={} required/>
+          <.custom_input field={@form[:arrival_date]} type="date" label="Arrival Date" value={} required/>
+          <.custom_input field={@form[:departure_date]} type="date" label="Departure Date" value={} required/>
+          <.custom_input field={@form[:note]} type="textarea" label="Note" value={} required/>
           <:actions>
           <.link phx-click="back-personal" phx-target={@myself}>
             <.button>Back</.button>
