@@ -1,4 +1,4 @@
-          <%!-- <div class="text-left">
+          <%!-- <%!-- <div class="text-left">
             <h2 class="text-2xl font-bold tracking-tight text-title_txt">Submission Report</h2>
             <p class="my-5 text-sm leading-6 text-gray-600">
               Your request for booking has been successfully submitted.
@@ -28,54 +28,88 @@
 <.link class = "underline" navigate={~p"/mmaccess/new_visit/?visitor_email=#{@email}"}>Click here to add family</.link>--------------------------
         <.link class = "underline" navigate={~p"/mmaccess/visitor_page/personal_details/#{@id}/bookings"}>Click here to view your bookings</.link> --%>
 
-<%!-- 
-         <div class="container">
+
+             <%!-- <div class="container">
                 <div class="field font-semibold">Email :</div>
-                <div class="value"><%= @visitor_email %></div>
+                <div class="value"><.input field={@form[:email]} type="email" label="email" value={@visitor_email} /></div>
             </div>
             <div class="container">
                 <div class="field font-semibold">First Name :</div>
-                <div class="value"><%= @personal.first_name %></div>
+                <div class="value"><.input field={@form[:first_name]} type="text" label="First Name" value={@personal.first_name} readonly/></div>
             </div>
             <div class="container">
                 <div class="field font-semibold">Last Name :</div>
-                <div class="value"><%= @personal.last_name %></div>
+                <div class="value"><.input field={@form[:last_name]} type="text" label="Last Name" value={@personal.last_name}/></div>
             </div>
             <div class="container">
                 <div class="field font-semibold">Dob Of Birth :</div>
-                <div class="value"><%= @personal.dob %></div>
+                <div class="value"><.input field={@form[:dob]} type="date" label="Dob Of Birth" value={@personal.dob} /></div>
             </div>
             <div class="container">
                 <div class="field font-semibold">Country :</div>
-                <div class="value"><%= @personal.country %></div>
+                <div class="value"><.input field={@form[:country]} type="text" label="Country" value={@personal.country} /></div>
             </div>
             <div class="container">
                 <div class="field font-semibold">City :</div>
-                <div class="value"><%= @personal.city %></div>
+                <div class="value"><.input field={@form[:city]} type="text" label="City" value={@personal.city}/></div>
             </div>
             <div class="container">
                 <div class="field font-semibold">Visited :</div>
-                <div class="value"><%= @personal.visited %></div>
+                <div class="value"><.input field={@form[:visited]} type="text" label="City" value={@personal.visited}/></div>
             </div>
             <%= if @personal.visited == "Yes" do %>
             <div class="container">
                 <div class="field font-semibold">Last visit :</div>
-                <div class="value"><%= @personal.last_visit %></div>
+                <div class="value"><.input field={@form[:last_visit]} type="text" label="Last visit" value={@personal.last_visit}/></div>
             </div>
             <% end %>
             <div class="container">
                 <div class="field font-semibold">Preferred Date :</div>
-                <div class="value"><%= @booking.preferred_date %></div>
+                <div class="value"><.input field={@form[:preferred_date]} type="date" label="Preferred Date" value={@booking.preferred_date} /></div>
             </div>
             <div class="container">
                 <div class="field font-semibold">Alternate Date :</div>
-                <div class="value"><%= @booking.alternate_date %></div>
+                <div class="value"><.input field={@form[:alternate_date]} type="date" label="Alternate Date" value={@booking.alternate_date} /></div>
             </div>
             <div class="container">
                 <div class="field font-semibold">Arrival Date :</div>
-                <div class="value"><%= @booking.departure_date %></div>
+                <div class="value"><.input field={@form[:arrival_date]} type="date" label="Arrival Date" value={@booking.arrival_date} />
             </div>
+            </div>
+
+             <div class="container">
+                <div class="field font-semibold">Staying At :</div>
+                <div class="value"><.input field={@form[:stay]} type="text" label="Place" value={@booking.stay} />
+                </div>
+            </div> 
+
+            <div class="container">
+                <div class="field font-semibold">Departure Date :</div>
+                <div class="value"><.input field={@form[:departure_date]} type="date" label="Departure Date" value={@booking.departure_date} />
+                </div>
+            </div> 
+
             <div class="container">
                 <div class="field font-semibold">Note :</div>
-                <div class="value"><%= @booking.note %></div>
-            </div> --%>
+                <div class="value"><.input field={@form[:note]} type="textarea" label="Note" value={@booking.note}  />
+                </div>
+            </div>  --%>
+
+
+
+        <%!-- <.input field={@form[:email]} type="email" label="email" value={@visitor_email} />
+          <.input field={@form[:first_name]} type="text" label="First Name" value={@personal.first_name} readonly/>
+          <.input field={@form[:last_name]} type="text" label="Last Name" value={@personal.last_name}/>
+          <.input field={@form[:dob]} type="date" label="Dob Of Birth" value={@personal.dob} />
+          <.input field={@form[:country]} type="text" label="Country" value={@personal.country} />
+          <.input field={@form[:city]} type="text" label="City" value={@personal.city}/>
+          <.input field={@form[:visited]} type="text" label="City" value={@personal.visited}/>
+          <%= if @personal.visited == "Yes" do %>
+          <.input field={@form[:last_visit]} type="text" label="Last visit" value={@personal.last_visit}/>
+          <% end %>
+          <.input field={@form[:preferred_date]} type="date" label="Preferred Date" value={@booking.preferred_date} />
+          <.input field={@form[:alternate_date]} type="date" label="Alternate Date" value={@booking.alternate_date} />
+          <.input field={@form[:stay]} type="text" label="Place" value={@booking.stay} />
+          <.input field={@form[:arrival_date]} type="date" label="Arrival Date" value={@booking.arrival_date} />
+          <.input field={@form[:departure_date]} type="date" label="Departure Date" value={@booking.departure_date} />
+          <.input field={@form[:note]} type="textarea" label="Note" value={@booking.note}  /> --%> --%>

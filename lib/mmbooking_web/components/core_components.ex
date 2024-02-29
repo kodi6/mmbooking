@@ -512,6 +512,26 @@ defmodule MmbookingWeb.CoreComponents do
     """
   end
 
+
+  def custom_input(%{type: "radio"} = assigns) do
+    assigns =
+      assign_new(assigns, :checked, fn -> Phoenix.HTML.Form.normalize_value("radio", @value) end)
+
+    ~H"""
+    <div phx-feedback-for={@name}>
+      <input
+        type="radio"
+        id={@id}
+        name={@name}
+        checked={@checked}
+        value={Phoenix.HTML.Form.normalize_value(@type, @value)}
+        class="h-4 w-4 border-gray-300 text-primary focus:ring-primary"
+        {@rest}
+      />
+    </div>
+    """
+  end
+
   # All other inputs text, datetime-local, url, password, etc. are handled here...
   def custom_input(assigns) do
     ~H"""
@@ -636,7 +656,7 @@ defmodule MmbookingWeb.CoreComponents do
       <table class="w-[40rem] mt-11 sm:w-full">
         <thead class="text-sm text-left leading-6 text-zinc-500">
           <tr>
-            <th :for={col <- @col} class="p-0 pb-4 pr-6 font-normal"><%= col[:label] %></th>
+            <th :for={col <- @col} class="p-0 pb-4 pr-6 font-semibold text-black"><%= col[:label] %></th>
             <th :if={@action != []} class="relative p-0 pb-4">
               <span class="sr-only"><%= gettext("Actions") %></span>
             </th>

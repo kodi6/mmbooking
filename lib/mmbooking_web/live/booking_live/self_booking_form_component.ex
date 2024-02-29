@@ -11,6 +11,12 @@ defmodule MmbookingWeb.BookingLive.SelfBookingFormComponent do
           phx-change="validate"
           phx-submit="save"
         >
+
+          <h1 class="font-bold text-2xl">Self Booking form</h1>
+
+          <div class="flex space-x-6 mt-6">
+          <label class="font-semibold" >Full Name :</label> <div><%= @visitor.first_name%></div>
+          </div>
           <.custom_input field={@form[:preferred_date]} type="date" label="Preferred Date" value={} required/>
           <.custom_input field={@form[:alternate_date]} type="date" label="Alternate Date" value={} required/>
           <.custom_input field={@form[:stay]} type="text" label="Place" value={} required/>
@@ -18,9 +24,7 @@ defmodule MmbookingWeb.BookingLive.SelfBookingFormComponent do
           <.custom_input field={@form[:departure_date]} type="date" label="Departure Date" value={} required/>
           <.custom_input field={@form[:note]} type="textarea" label="Note" value={} required/>
           <:actions>
-          <.link phx-click="back-personal" phx-target={@myself}>
-            <.button>Back</.button>
-          </.link>
+
             <.button phx-disable-with="Saving...">Submit</.button>
           </:actions>
       </.simple_form>

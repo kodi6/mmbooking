@@ -1,16 +1,27 @@
 
+<div class="space-y-4">
+<h1 class="font-bold text-2xl">Home</h1>
 
-<%= @visitor_email %>
+<p>You are signed in as <span class="font-semibold"><%= @visitor_email %></span>. 
+The following profiles are registered using this email ID.</p>
+
+<p>Select a name below and click on "Bookings" button to view your past bookings or make a new booking.</p>
+</div>
+
 <.simple_form :let={f} for={:check_form}  phx-submit="radio">
 <.table
   id="visitors"
   rows={@visitors}>
   <:col :let={visitor}><.custom_input name="id" type="radio" value={visitor.id} /></:col>
-  <:col :let={visitor} label="Name"><.link class = "underline" navigate={~p"/mmaccess/visitor_page/personal_details/#{visitor.id}"}><%= visitor.first_name %></.link></:col>
+  <:col :let={visitor} label="Name"><.link class = "underline decoration-2" navigate={~p"/mmaccess/visitor_page/personal_details/#{visitor.id}"}><%= visitor.first_name %></.link></:col>
   <:col :let={visitor} label="Age"><%= visitor.last_name %></:col>
   <:col :let={visitor} label="DOB"><%= visitor.dob %></:col>
 </.table>
-<.button phx-disable-with="loading">Booking</.button>
+<div class="flex justify-end">
+<.button phx-disable-with="loading">Bookings</.button>
+</div>
 </.simple_form>
+
+
 
 
