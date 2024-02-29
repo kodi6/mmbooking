@@ -14,7 +14,7 @@ defmodule MmbookingWeb.NewVisitorLive.VisitorFormComponent do
           phx-submit="save"
         >
           <div class="space-x-20"><span class="font-semibold">Email :</span> <span class="ml-6"><%= @visitor_email %></span></div>
-          <.custom_input field={@form[:email]} type="Email" label="Email:" value={@visitor_email} />
+          <.custom_input field={@form[:email]} type="hidden" value={@visitor_email} />
           <.custom_input field={@form[:first_name]} type="text" label="First Name" required />
           <.custom_input field={@form[:last_name]} type="text" label="Last Name" required />
           <.custom_input field={@form[:dob]} type="date" label="Dob Of Birth"  required />
