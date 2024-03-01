@@ -7,8 +7,7 @@ defmodule MmbookingWeb.NewVisitorLive.Index do
 
 
   @impl true
-  def mount(params, _session, socket) do
-    visitor_email = Map.get(params, "visitor_email")
+  def mount(_params, %{"visitor_email" => visitor_email}, socket) do
     changeset = Visitors.change_visitor(%Visitor{})
 
     {:ok,
