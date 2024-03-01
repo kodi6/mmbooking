@@ -14,20 +14,94 @@ defmodule MmbookingWeb.NewVisitorLive.PreviewFormComponent do
           phx-submit="save"
         >
 
-        <div class="space-x-20"><span class="font-semibold">Email :</span> <span class="ml-6"><%= @visitor_email %></span></div>
-        <div class="space-x-20"><span class="font-semibold">First Name :</span> <span class="ml-6"><%= @personal.first_name %></span></div>
-        <div class="space-x-20"><span class="font-semibold">Last Name :</span> <span class="ml-6"><%= @personal.last_name %></span></div>
-        <div class="space-x-20"><span class="font-semibold">Dob Of Birth :</span> <span class="ml-6"><%= @personal.dob %></span></div>
-        <div class="space-x-20"><span class="font-semibold">Country :</span> <span class="ml-6"><%= @personal.country %></span></div>
-        <div class="space-x-20"><span class="font-semibold">City :</span> <span class="ml-6"><%= @personal.city %></span></div>
-        <div class="space-x-20"><span class="font-semibold">Visited :</span> <span class="ml-6"><%= @personal.visited %></span></div>
-        <%= if @personal.visited == "Yes" do %>
-        <div class="space-x-20"><span class="font-semibold">Last visit :</span> <span class="ml-6"><%= @personal.last_visit %></span></div>
-        <% end %>
-        <div class="space-x-20"><span class="font-semibold">Preferred Date :</span> <span class="ml-6"><%= @booking.preferred_date %></span></div>
-        <div class="space-x-20"><span class="font-semibold">Alternate Date :</span> <span class="ml-6"><%= @booking.alternate_date %></span></div>
-        <div class="space-x-20"><span class="font-semibold">Arrival Date :</span> <span class="ml-6"><%= @booking.departure_date %></span></div>
-        <div class="space-x-20"><span class="font-semibold">Note :</span> <span class="ml-6"><%= @booking.note %></span></div>
+        <div class="container">
+                <div class="field font-semibold">Visitor Email:</div>
+                <div class="value"><%= @visitor_email %></div>
+                <div class="value"><.input field={@form[:email]} type="hidden"  value={@visitor_email}/></div>
+            </div>
+
+            <div class="container">
+                <div class="field font-semibold">First Name :</div>
+                <div class="value"><%= @personal.first_name %></div>
+                <div class="value"><.input field={@form[:first_name]} type="hidden"  value={@personal.first_name} /></div>
+            </div>
+
+            <div class="container">
+                <div class="field font-semibold">Last Name :</div>
+                <div class="value"><%= @personal.last_name %></div>
+                <div class="value"><.input field={@form[:last_name]} type="hidden"  value={@personal.last_name}/></div>
+            </div>
+
+            <div class="container">
+                <div class="field font-semibold">Date Of Birth :</div>
+                <div class="value"><%= @personal.dob %></div>
+                <div class="value"><.input field={@form[:dob]} type="hidden"  value={@personal.dob} /></div>
+            </div>
+
+            <div class="container">
+                <div class="field font-semibold">Country :</div>
+                <div class="value"><%= @personal.country %></div>
+                <div class="value"><.input field={@form[:country]} type="hidden"  value={@personal.country} /></div>
+            </div>
+
+            <div class="container">
+                <div class="field font-semibold">City :</div>
+                <div class="value"><%= @personal.city %></div>
+                <div class="value"><.input field={@form[:city]} type="hidden"  value={@personal.city}/></div>
+            </div>
+
+            <div class="container">
+                <div class="field font-semibold">Visited :</div>
+                <div class="value"><%= @personal.visited %></div>
+                <div class="value"><.input field={@form[:visited]} type="hidden"  value={@personal.visited}/></div>
+            </div>
+
+            <%= if @personal.visited == "Yes" do %>
+            <div class="container">
+                <div class="field font-semibold">Last Visit :</div>
+                <div class="value"><%= @personal.last_visit %></div>
+                <div class="value"><.input field={@form[:last_visit]} type="hidden"  value={@personal.last_visit}/></div>
+            </div>
+            <% end %>
+
+            <div class="container">
+                <div class="field font-semibold">Preferred Date :</div>
+                <div class="value"><%= @booking.preferred_date %></div>
+                <div class="value"><.input field={@form[:preferred_date]} type="hidden"  value={@booking.preferred_date} /></div>
+            </div>
+
+            <div class="container">
+                <div class="field font-semibold">Alternate Date :</div>
+                <div class="value"><%= @booking.alternate_date %></div>
+                <div class="value"><.input field={@form[:alternate_date]} type="hidden"  value={@booking.alternate_date} /></div>
+            </div>
+
+            <div class="container">
+                <div class="field font-semibold">Arrival Date :</div>
+                <div class="value"><%= @booking.arrival_date %></div>
+                <div class="value"><.input field={@form[:arrival_date]} type="hidden"  value={@booking.arrival_date} /></div>
+            </div>
+
+             <div class="container">
+                <div class="field font-semibold">Stay :</div>
+                <div class="value"><%= @booking.stay %></div>
+                <div class="value"><.input field={@form[:stay]} type="hidden"  value={@booking.stay} />
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="field font-semibold">Departure Date :</div>
+                <div class="value"><%= @booking.departure_date %></div>
+                <div class="value"><.input field={@form[:departure_date]} type="hidden"  value={@booking.departure_date} />
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="field font-semibold">Note :</div>
+                <div class="value"><%= @booking.note %></div>
+                <div class="value"><.input field={@form[:note]} type="hidden"  value={@booking.note}  />
+                </div>
+            </div>
           <:actions>
           <.link phx-click="back-booking" phx-target={@myself}>
             <.button>Back</.button>

@@ -33,7 +33,7 @@ defmodule MmbookingWeb.BookingLive.SelfBookingFormComponent do
   end
 
   def update(%{visitor: visitor} = assigns, socket) do
-    changeset = Visitors.change_visitor(visitor)
+    changeset = Visitors.change_booking_changeset(visitor)
 
     {:ok,
      socket
@@ -46,7 +46,7 @@ defmodule MmbookingWeb.BookingLive.SelfBookingFormComponent do
   def handle_event("validate", %{"visitor" => visitor_params}, socket) do
     changeset =
       socket.assigns.visitor
-      |> Visitors.change_visitor(visitor_params)
+      |> Visitors.change_booking_changeset(visitor_params)
       |> Map.put(:action, :validate)
     {:noreply, assign_form(socket, changeset)}
   end
