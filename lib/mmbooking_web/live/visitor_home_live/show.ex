@@ -15,7 +15,6 @@ defmodule MmbookingWeb.VisitorHomeLive.Show do
 
   def handle_event("change_name",  %{"id" => id}, socket) do
     visitor = List.first(Enum.filter(socket.assigns.visitors, fn visitor -> visitor.id == id end))
-    IO.inspect(visitor, label: "visitor")
     {:noreply,
     socket
     |> assign(:visitor, visitor)

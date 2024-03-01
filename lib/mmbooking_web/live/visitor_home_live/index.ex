@@ -4,7 +4,6 @@ defmodule MmbookingWeb.VisitorHomeLive.Index do
 alias Mmbooking.Visitors
 
   def mount(%{"id" => id}, _session, socket) do
-    IO.inspect(id, label: "id")
     visitor = Visitors.get_visitor_by_id(id)
     visitors = Visitors.get_visitors_by_email(visitor.email)
     {:ok,
