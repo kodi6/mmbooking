@@ -13,11 +13,14 @@ defmodule MmbookingWeb.VisitorHomeLive.Show do
     |> assign(:visitors, visitors)}
   end
 
-  def handle_event("change_name", %{"first_name" => first_name}, socket) do
-    visitor = List.first(Enum.filter(socket.assigns.visitors, fn visitor -> visitor.first_name == first_name end))
+  def handle_event("change_name",  %{"id" => id}, socket) do
+    visitor = List.first(Enum.filter(socket.assigns.visitors, fn visitor -> visitor.id == id end))
+    IO.inspect(visitor, label: "visitor")
     {:noreply,
     socket
-    |> assign(:visitor, visitor)}
+    |> assign(:visitor, visitor)
+    |> push_patch(to: ~p"/mmaccess/visitor_page/personal_details/#{visitor.id}")
+  }
   end
 
   def handle_params(params, _url, socket) do
