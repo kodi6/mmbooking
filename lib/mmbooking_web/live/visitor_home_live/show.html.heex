@@ -1,20 +1,53 @@
 
-<div>
+
+
+
+<div class="space-y-4">
+  <div>
   <.simple_form :let={f} for={:name_form} id="name-form" phx-change="change_name">
-  <.input name="first_name" field={{f, :first_name}} type="select"  value={@visitor.first_name} options={Enum.map(@visitors, fn visitor -> visitor.first_name end)} required/>
+      <.custom_input name="first_name" field={{f, :first_name}} type="select"  value={@visitor.first_name} options={Enum.map(@visitors, fn visitor -> visitor.first_name end)} label="Select Name :" required/>
   </.simple_form>
+  </div>
+
+<div class="container">
+    <div class="field font-semibold">First Name :</div>
+    <div class="value"><%= @visitor.first_name %></div>
 </div>
 
-<label for="First Name" class="block text-sm font-medium leading-6 text-gray-900">First Name</label> <%= @visitor.first_name %>
-<label for="Last Name" class="block text-sm font-medium leading-6 text-gray-900">Last Name</label> <%= @visitor.last_name %>
-<label for="Date Of birth" class="block text-sm font-medium leading-6 text-gray-900">DOB</label> <%= @visitor.dob %>
-<label for="Email" class="block text-sm font-medium leading-6 text-gray-900">Email</label> <%= @visitor.email %>
-<label for="Country" class="block text-sm font-medium leading-6 text-gray-900">Country</label> <%= @visitor.country %>
-<label for="City" class="block text-sm font-medium leading-6 text-gray-900">City</label> <%= @visitor.city %>
+<div class="container">
+    <div class="field font-semibold">Last Name :</div>
+    <div class="value"><%= @visitor.last_name %></div>
+</div>
+
+<div class="container">
+    <div class="field font-semibold">Email :</div>
+    <div class="value"><%= @visitor.email %></div>
+</div>
+
+<div class="container">
+    <div class="field font-semibold">Country :</div>
+    <div class="value"><%= @visitor.country %></div>
+</div>
+
+<div class="container">
+    <div class="field font-semibold">City :</div>
+    <div class="value"><%= @visitor.city %></div>
+</div>
+</div>
+
+ <div class="flex justify-end mt-8 space-x-4">    
+ <.link patch={~p"/mmaccess/visitor_page/personal_details/#{@visitor.id}/bookings"}>
+  <.button>bookings</.button>
+</.link>
+
+<.link patch={~p"/mmaccess/visitor_page?visitor_email=#{@visitor.email}"}>
+  <.button>Home</.button>
+</.link>
 
 <.link patch={~p"/mmaccess/visitor_page/personal_details/#{@visitor.id}/edit"} phx-click={JS.push_focus()}>
   <.button>Edit user</.button>
 </.link>
+</div>
 
 <.modal :if={@live_action == :edit} id="personal-modal" show on_cancel={JS.patch(~p"/mmaccess/visitor_page/personal_details/#{@visitor.id}")}>
   <.live_component
@@ -25,3 +58,7 @@
 
   />
 </.modal>
+
+
+
+
