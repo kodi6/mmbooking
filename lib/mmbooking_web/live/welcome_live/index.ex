@@ -17,10 +17,9 @@ defmodule MmbookingWeb.WelcomeLive.Index do
     if checkbox == "true" do
       emails = Visitors.list_email
       if email in emails do
-        visitor = Visitors.get_visitor_by_email(email)
         {:noreply,
         socket
-        |> push_redirect(to: ~p"/mmaccess/visitor_page?id=#{visitor.id}")
+        |> push_redirect(to: ~p"/mmaccess/existing_email/?visitor_email=#{email}")
         |> assign(:email, email)}
       else
         {:noreply,
