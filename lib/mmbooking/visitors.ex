@@ -53,4 +53,10 @@ defmodule Mmbooking.Visitors do
   end
 
 
+  def get_visitor_by_email(email) do
+    Repo.get_by(Visitor, email: email)
+  end
+
+
+
 end

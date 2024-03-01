@@ -5,7 +5,7 @@
 <div class="space-y-4">
   <div>
   <.simple_form :let={f} for={:name_form} id="name-form" phx-change="change_name">
-      <.custom_input name="first_name" field={{f, :first_name}} type="select"  value={@visitor.first_name} options={Enum.map(@visitors, fn visitor -> visitor.first_name end)} label="Select Name :" required/>
+      <.custom_input name="id" field={{f, :first_name}} type="select"   value={"#{@visitor.first_name} #{@visitor.last_name}"} options={Enum.map(@visitors, fn visitor -> {"#{visitor.first_name} #{visitor.last_name}", visitor.id} end)} label="Select Name :" required/>
   </.simple_form>
   </div>
 

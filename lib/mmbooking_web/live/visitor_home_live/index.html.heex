@@ -2,7 +2,7 @@
 <div class="space-y-4">
 <h1 class="font-bold text-2xl">Home</h1>
 
-<p>You are signed in as <span class="font-semibold"><%= @visitor_email %></span>. 
+<p>You are signed in as <span class="font-semibold"><%= @visitor.email %></span>. 
 The following profiles are registered using this email ID.</p>
 
 <p>Select a name below and click on "Bookings" button to view your past bookings or make a new booking.</p>
@@ -25,3 +25,7 @@ The following profiles are registered using this email ID.</p>
 
 
 
+
+ <p class="my-5 text-sm leading-6 text-gray-600">
+  <.link class = "underline text-blue-900" navigate={~p"/mmaccess/email/?visitor_email=#{@visitor.email}"}>Click here to add a family member using same Email ID</.link>
+</p>

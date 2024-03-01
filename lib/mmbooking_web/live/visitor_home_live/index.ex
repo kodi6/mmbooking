@@ -3,12 +3,14 @@ defmodule MmbookingWeb.VisitorHomeLive.Index do
 
 alias Mmbooking.Visitors
 
-  def mount(%{"visitor_email" => visitor_email}, _session, socket) do
-    visitors = Visitors.get_visitors_by_email(visitor_email)
+  def mount(%{"id" => id}, _session, socket) do
+    visitor = Visitors.get_visitor_by_id(id)
+    visitors = Visitors.get_visitors_by_email(visitor.email)
     {:ok,
     socket
-    |> assign(:visitor_email, visitor_email)
-    |> assign(:visitors, visitors)}
+    |> assign(:visitor, visitor)
+    |> assign(:visitors, visitors)
+  }
   end
 
 
