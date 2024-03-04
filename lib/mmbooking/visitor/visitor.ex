@@ -42,6 +42,7 @@ defmodule Mmbooking.Visitor.Visitor do
     |> validate_length(:last_name, max: 20)
     |> validate_length(:city, max: 30)
     |> validate_length(:last_visit, max: 30)
+    |> age_limit()
   end
 
   def booking_changeset(visitor, attrs) do
@@ -97,6 +98,22 @@ if arrival_date != nil and departure_date != nil do
     end
   else
     booking_changeset
+  end
+end
+
+
+def age_limit(personal_changeset) do
+  dob = get_field(personal_changeset, :dob)
+  year = Date.add(Date.utc_today(), -3650)
+
+  case Date.compare(year, dob) do
+    :lt ->
+      personal_changeset
+      |> add_error(
+        :dob,
+        "Sorry! Children below 10 years of age are NOT permitted inside the Matrimandir Inner Chamber.")
+    _ ->
+      personal_changeset
   end
 end
 
