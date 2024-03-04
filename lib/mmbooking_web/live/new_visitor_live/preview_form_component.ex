@@ -3,6 +3,7 @@ defmodule MmbookingWeb.NewVisitorLive.PreviewFormComponent do
 
 
   alias Mmbooking.Visitors
+  alias Mmbooking.EmailNotifier
 
   def render(assigns) do
     ~H"""
@@ -133,6 +134,8 @@ defmodule MmbookingWeb.NewVisitorLive.PreviewFormComponent do
   def handle_event("save", %{"visitor" => visitor_params}, socket) do
     case Visitors.create_visitor(visitor_params) do
       {:ok, visitor} ->
+        EmailNotifier.submission_mail(visitor)
+
         {:noreply,
          socket
          |> assign(:visitor, visitor)
