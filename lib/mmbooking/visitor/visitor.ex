@@ -105,15 +105,18 @@ end
 def age_limit(personal_changeset) do
   dob = get_field(personal_changeset, :dob)
   year = Date.add(Date.utc_today(), -3650)
-
-  case Date.compare(year, dob) do
-    :lt ->
-      personal_changeset
-      |> add_error(
-        :dob,
-        "Sorry! Children below 10 years of age are NOT permitted inside the Matrimandir Inner Chamber.")
-    _ ->
-      personal_changeset
+  if dob !== nil do
+    case Date.compare(year, dob) do
+      :lt ->
+        personal_changeset
+        |> add_error(
+          :dob,
+          "Sorry! Children below 10 years of age are NOT permitted inside the Matrimandir Inner Chamber.")
+      _ ->
+        personal_changeset
+    end
+  else
+    personal_changeset
   end
 end
 
