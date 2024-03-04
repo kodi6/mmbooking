@@ -7,6 +7,7 @@ defmodule Mmbooking.Visitors do
 
 
   def change_personal_changeset(%Visitor{} = visitor, attrs \\ %{}) do
+    IO.inspect(attrs, label: "attrs")
     Visitor.personal_changeset(visitor, attrs)
   end
 
