@@ -30,7 +30,7 @@ defmodule MmbookingWeb.Router do
   scope "/", MmbookingWeb do
     pipe_through [:browser, :liveview]
 
-    get "/", PageController, :home
+    # get "/", PageController, :home
     live "/mmaccess", WelcomeLive.Index, :index
     live "/mmaccess/new_visit", NewVisitorLive.Index, :index
     get "/mmaccess/email", VisitorController, :create
@@ -43,6 +43,8 @@ defmodule MmbookingWeb.Router do
     live "/mmaccess/visitor_page/personal_details/:id/bookings", BookingLive.Index, :index
     live "/mmaccess/visitor_page/personal_details/:id/bookings/new_booking", BookingLive.Index, :edit
     live "/try", TryLive.Index, :index
+    live "/", UserLoginLive, :new
+
   end
 
 
@@ -85,7 +87,6 @@ defmodule MmbookingWeb.Router do
     live_session :redirect_if_user_is_authenticated,
       on_mount: [{MmbookingWeb.UserAuth, :redirect_if_user_is_authenticated}] do
       live "/users/register", UserRegistrationLive, :new
-      live "/users/log_in", UserLoginLive, :new
       live "/users/reset_password", UserForgotPasswordLive, :new
       live "/users/reset_password/:token", UserResetPasswordLive, :edit
     end
