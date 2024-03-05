@@ -86,6 +86,7 @@ defmodule MmbookingWeb do
       # Core UI components and translation
       import MmbookingWeb.CoreComponents
       import MmbookingWeb.Gettext
+      import MmbookingWeb.Nav
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
