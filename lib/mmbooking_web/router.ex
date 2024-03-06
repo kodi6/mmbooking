@@ -45,15 +45,17 @@ defmodule MmbookingWeb.Router do
     live "/try", TryLive.Index, :index
     live "/", UserLoginLive, :new
 
+
   end
 
 
-  scope "/admin", MmbookingWeb do
+  scope "/", MmbookingWeb do
     pipe_through [:browser, :admin]
 
     scope "/" do
       pipe_through [:require_authenticated_user]
       live "/", AdminLive.Index, :index
+      live "/search_visitor", SearchVisitorLive.Index, :index
     end
   end
 

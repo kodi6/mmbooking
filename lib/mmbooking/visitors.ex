@@ -56,4 +56,39 @@ defmodule Mmbooking.Visitors do
   def get_visitor_by_email(email) do
     Repo.get_by(Visitor, email: email)
   end
+
+  def list_visitor do
+    Repo.all(Visitor)
+  end
+
+
+  def search_visitors(params) do
+    Visitor
+    |> get_search_results(params)
+    |> Repo.all()
+  end
+
+
+  def get_search_results(q, params) do
+    params
+    |> Enum.reject(fn {_key, value} -> String.trim(value) == "" end)
+    |> Enum.reduce(q, fn
+
+      {"first_name", first_name}, q ->
+        from p in q, where: ilike(p.first_name, ^"#{first_name}%")
+
+      {"last_name", last_name}, q ->
+        from p in q, where: ilike(p.last_name, ^"#{last_name}%")
+
+      {"city", city}, q ->
+        from p in q, where: ilike(p.city, ^"#{city}%")
+
+      {"email", email}, q ->
+        from p in q, where: ilike(p.email, ^"#{email}%")
+
+      _, q -> q
+      end)
+  end
+
+
 end
