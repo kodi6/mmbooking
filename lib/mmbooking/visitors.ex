@@ -86,6 +86,9 @@ defmodule Mmbooking.Visitors do
       {"email", email}, q ->
         from p in q, where: ilike(p.email, ^"#{email}%")
 
+      {"dob", dob}, q ->
+        from p in q, where: p.dob == ^dob
+
       _, q -> q
       end)
   end
