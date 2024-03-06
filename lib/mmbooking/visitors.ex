@@ -70,7 +70,6 @@ defmodule Mmbooking.Visitors do
 
 
   def get_search_results(q, params) do
-    IO.inspect(params, label: "paramsq")
     params
     |> Enum.reject(fn {_key, value} -> String.trim(value) == "" end)
     |> Enum.reduce(q, fn
