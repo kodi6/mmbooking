@@ -70,6 +70,7 @@ defmodule Mmbooking.Visitors do
 
 
   def get_search_results(q, params) do
+    IO.inspect(params, label: "paramsq")
     params
     |> Enum.reject(fn {_key, value} -> String.trim(value) == "" end)
     |> Enum.reduce(q, fn
@@ -85,6 +86,9 @@ defmodule Mmbooking.Visitors do
 
       {"email", email}, q ->
         from p in q, where: ilike(p.email, ^"#{email}%")
+
+      {"dob", dob}, q ->
+        from p in q, where: p.dob == ^dob
 
       _, q -> q
       end)
