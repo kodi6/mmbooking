@@ -1,0 +1,27 @@
+ <.simple_form :let={f} for={:search_form} id="search-form" phx-submit="search">
+    <.input name="first_name" field={{f, :first_name}} type="text"  value={}  placeholder="First Name"/>
+    <.input name="last_name" field={{f, :last_name}} type="text"  value={}  placeholder="Last Name"/>
+    <.input name="city" field={{f, :city}} type="text"  value={}  placeholder="City"/>
+    <.input name="email" field={{f, :email}} type="text"  value={}  placeholder="Email"/>
+    <%!-- <.input name="date_of_birth" field={{f, :dob}} type="date"  value={}  placeholder="Date"/> --%>
+
+
+
+
+    <.button  phx-disable-with="Saving...">Search</.button>
+  </.simple_form>
+
+
+
+
+  <.table
+  id="visitors"
+  rows={@visitors}>
+  <%!-- <:col :let={visitor} label="First Name"><.link class = "underline decoration-2" navigate={~p"/mmaccess/visitor_page/personal_details/#{visitor.id}"}><%= visitor.first_name %></.link></:col> --%>
+  <:col :let={visitor} label="Last NAme"><%= visitor.first_name %></:col>
+  <:col :let={visitor} label="Last NAme"><%= visitor.last_name %></:col>
+  <:col :let={visitor} label="City"><%= visitor.city %></:col>
+  <:col :let={visitor} label="DOB"><%= visitor.dob %></:col>
+  <:col :let={visitor} label="Email"><%= visitor.email %></:col>
+
+</.table>
