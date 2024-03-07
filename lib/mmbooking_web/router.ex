@@ -56,7 +56,8 @@ defmodule MmbookingWeb.Router do
       pipe_through [:require_authenticated_user]
       live "/search_visitor", SearchVisitorLive.Index, :index
       live "/search_visitor/add_visitor", SearchVisitorLive.Index, :new
-
+      live "/booking_details/:id", BookingDetailLive.Index, :index
+      live "/booking_details/:id/edit", BookingDetailLive.Index, :edit
     end
   end
 

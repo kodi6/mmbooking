@@ -621,13 +621,7 @@ defmodule MmbookingWeb.CoreComponents do
   end
 
   @doc ~S"""
-  Renders a table with
-
-error: undefined function sigil_p/2 (expected MmbookingWeb.Nav to define such a function or for it to be imported, but none are available)
-  lib/mmbooking_web/components/nav.ex:18
-
-error: undefined function sigil_p/2 (expected MmbookingWeb.Nav to define such a function or for it to be imported, but none are available)
-  lib/mmbooking_web/components/nav.ex:26 styling.
+  Renders a table with generic styling.
 
   ## Examples
 
