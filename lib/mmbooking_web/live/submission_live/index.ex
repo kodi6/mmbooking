@@ -37,7 +37,7 @@ defmodule MmbookingWeb.SubmissionLive.Index do
   def mount(%{"id" => id}, _session, socket) do
     visitor = Visitors.get_visitor_by_id(id)
     email = visitor.email
-    update = Visitors.update_visitor(visitor, %{"status" => "Request sent"})
+    update = Visitors.update_visitor(visitor, %{"status" => "Pending"})
     {:ok,
     socket
     |> assign(:email, email)

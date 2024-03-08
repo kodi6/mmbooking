@@ -1,4 +1,4 @@
-
+<div class="">
 <div class="space-y-6">
     <h1 class="font-bold text-2xl">Visitor Info</h1>
 
@@ -104,8 +104,14 @@
         <div class="value"><%= @visitor.status %></div>
     </div>
 
-    <%!-- <.button phx-submit="send">Send Email</.button> --%>
   </div> 
+
+
+
+ <.link patch={~p"/booking_details/#{@visitor.id}/send_email"}>
+    <.button>Send Email</.button>
+</.link>
+
 
 
 <div class="space-y-6 my-9">
@@ -148,7 +154,7 @@
 
   </div> 
  
-
+</div>
 <.modal :if={@live_action == :edit} id="personal-modal" show on_cancel={JS.patch(~p"/booking_details/#{@visitor.id}")}>
   <.live_component
     module={MmbookingWeb.BookingDetailLive.VisitorFormComponent}
@@ -156,4 +162,15 @@
     visitor={@visitor}
     patch={~p"/booking_details/#{@visitor.id}"}
     />
+</.modal>
+
+<.modal :if={@live_action in [:custom_email]} id="custom_email-modal" show on_cancel={JS.patch(~p"/booking_details/#{@visitor.id}")}>
+  <.live_component
+    module={MmbookingWeb.BookingDetailLive.MailFormComponent}
+    id={@visitor.id}
+    title={@page_title}
+    action={@live_action}
+    visitor={@visitor}
+    patch={~p"/booking_details/#{@visitor.id}"}
+  />
 </.modal>

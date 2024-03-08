@@ -26,5 +26,22 @@ defmodule Mmbooking.EmailNotifier do
     Mmbooking.Mailer.deliver(email)
   end
 
+  def custom_mail(subject, message, visitor) do
+    email =
+    new()
+    |> from("mm@auroville.org.in")
+    |> to(visitor.email)
+    |> subject(subject)
+    |> text_body("""
+
+        <p>Dear #{visitor.first_name},</p>
+
+        <p>#{message}</p>
+        <p>Best regards,<br>
+
+    """)
+    Mmbooking.Mailer.deliver(email)
+  end
+
 
 end
