@@ -18,11 +18,27 @@
   <.table
   id="visitors"
   rows={@visitors}>
-  <%!-- <:col :let={visitor} label="First Name"><.link class = "underline decoration-2" navigate={~p"/mmaccess/visitor_page/personal_details/#{visitor.id}"}><%= visitor.first_name %></.link></:col> --%>
-  <:col :let={visitor} label="Last NAme"><%= visitor.first_name %></:col>
-  <:col :let={visitor} label="Last NAme"><%= visitor.last_name %></:col>
+  <:col :let={visitor} label="First Name"><.link class = "underline decoration-2" navigate={~p"/booking_details/#{visitor.id}"}><%= visitor.first_name %></.link></:col>
+  <:col :let={visitor} label="Last Name"><%= visitor.last_name %></:col>
   <:col :let={visitor} label="City"><%= visitor.city %></:col>
   <:col :let={visitor} label="DOB"><%= visitor.dob %></:col>
   <:col :let={visitor} label="Email"><%= visitor.email %></:col>
 
 </.table>
+
+
+ <.link patch={~p"/search_visitor/add_visitor"}>
+      <.button>New Visitor</.button>
+    </.link>
+
+<.modal :if={@live_action in [:new]} id="user-modal" show on_cancel={JS.patch(~p"/search_visitor")}>
+  <.live_component
+    module={MmbookingWeb.SearchVisitorLive.AddVisitorFormComponent}
+    id={:new}
+    title={@page_title}
+    action={@live_action}
+    visitor={@visitor}
+    patch={~p"/search_visitor"}
+  />
+</.modal>
+

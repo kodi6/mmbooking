@@ -94,4 +94,10 @@ defmodule Mmbooking.Visitors do
   end
 
 
+
+  def delete_visitor(%Visitor{} = visitor) do
+    Repo.delete(visitor)
+  end
+
+
 end

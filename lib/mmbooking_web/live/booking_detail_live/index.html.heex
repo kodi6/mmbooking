@@ -1,0 +1,159 @@
+
+<div class="space-y-6">
+    <h1 class="font-bold text-2xl">Visitor Info</h1>
+
+    <div class="container">
+        <div class="field font-semibold">First Name :</div>
+        <div class="value"><%= @visitor.first_name %></div>
+    </div>
+
+    <div class="container">
+        <div class="field font-semibold">Last Name :</div>
+        <div class="value"><%= @visitor.last_name %></div>
+    </div>
+
+    <div class="container">
+        <div class="field font-semibold">Date Of Birth :</div>
+        <div class="value"><%= @visitor.dob %></div>
+    </div>
+
+    <div class="container">
+        <div class="field font-semibold">Email :</div>
+        <div class="value"><%= @visitor.email %></div>                                                          
+    </div>
+
+    <div class="container">
+        <div class="field font-semibold">Country :</div>
+        <div class="value"><%= @visitor.country %></div>                    
+    </div>
+
+    <div class="container">
+        <div class="field font-semibold">City :</div>
+        <div class="value"><%= @visitor.city %></div>
+    </div>
+
+    <div class="container">
+        <div class="field font-semibold">Created On :</div>
+        <div class="value"><%= @visitor.inserted_at %></div>
+    </div>
+</div>
+
+<div class="my-9">
+    <.link patch={~p"/booking_details/#{@visitor.id}/edit"} phx-click={JS.push_focus()}>
+        <.button>Edit</.button>
+    </.link>
+    <.link phx-click={JS.push("delete", value: %{id: @visitor.id}) |> hide("##{@visitor.id}")} data-confirm="Are you sure?">
+        <.button>Delete</.button>
+    </.link>
+</div>
+
+<div class="space-y-6">
+    <h1 class="font-bold text-2xl">Pending Booking Info</h1>
+
+
+    <div class="container">
+        <div class="field font-semibold">Preferred Date :</div>
+        <div class="value"><%= @visitor.preferred_date %></div>
+    </div>
+
+
+     <div class="container">
+        <div class="field font-semibold">Alternate Date :</div>
+        <div class="value"><%= @visitor.alternate_date %></div>
+    </div>
+
+
+     <div class="container">
+        <div class="field font-semibold">Stay :</div>
+        <div class="value"><%= @visitor.stay %></div>
+    </div>
+
+
+    <div class="container">
+        <div class="field font-semibold">Arrival Date :</div>
+        <div class="value"><%= @visitor.arrival_date %></div>
+    </div>
+
+
+    <div class="container">
+        <div class="field font-semibold">Departure Date :</div>
+        <div class="value"><%= @visitor.departure_date %></div>
+    </div>
+
+
+     <div class="container">
+        <div class="field font-semibold">Note :</div>
+        <div class="value"><%= @visitor.note %></div>
+    </div>
+
+
+    <div class="container">
+        <div class="field font-semibold">Visited :</div>
+        <div class="value"><%= @visitor.visited %></div>
+    </div>
+
+    <%= if @visitor.visited == "Yes" do %>
+    <div class="container">
+        <div class="field font-semibold">Last Visit :</div>
+        <div class="value"><%= @visitor.last_visit %></div>
+    </div>
+    <% end %>
+
+     <div class="container">
+        <div class="field font-semibold">Visited :</div>
+        <div class="value"><%= @visitor.status %></div>
+    </div>
+
+    <%!-- <.button phx-submit="send">Send Email</.button> --%>
+  </div> 
+
+
+<div class="space-y-6 my-9">
+<h1 class="font-bold text-2xl">MAKE A BOOKING</h1>
+
+    <div class="container">
+        <div class="field font-semibold">Reapted Visitor? :</div>
+        <div class="value">"Yes/No/Unknown"</div>
+    </div>
+
+
+     <div class="container">
+        <div class="field font-semibold">Select Date :</div>
+        <div class="value">"01/12/2023"</div>
+    </div>
+
+
+     <div class="container">
+        <div class="field font-semibold">Select A Session :</div>
+        <div class="value">"Select One"</div>
+    </div>
+
+
+    <div class="container">
+        <div class="field font-semibold">Seats Available :</div>
+        <div class="value">"50</div>
+    </div>
+
+
+    <div class="container">
+        <div class="field font-semibold">Select a Reason for Declining :</div>
+        <div class="value">"Booking full for the date"</div>
+    </div>
+
+
+     <div class="container">
+        <div class="field font-semibold">Other Reason for Declining :</div>
+        <div class="value">""</div>
+    </div>
+
+  </div> 
+ 
+
+<.modal :if={@live_action == :edit} id="personal-modal" show on_cancel={JS.patch(~p"/booking_details/#{@visitor.id}")}>
+  <.live_component
+    module={MmbookingWeb.BookingDetailLive.VisitorFormComponent}
+    id={@visitor.id}
+    visitor={@visitor}
+    patch={~p"/booking_details/#{@visitor.id}"}
+    />
+</.modal>
