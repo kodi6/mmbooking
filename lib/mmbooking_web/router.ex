@@ -59,6 +59,10 @@ defmodule MmbookingWeb.Router do
       live "/booking_details/:id", BookingDetailLive.Index, :index
       live "/booking_details/:id/edit", BookingDetailLive.Index, :edit
       live "/booking_details/:id/send_email", BookingDetailLive.Index, :custom_email
+      live "/users", UserLive.Index, :index
+      live "/admin", AdminLive.Index, :index
+      live "/users/new", UserLive.Index, :new
+      live "/users/:id/edit", UserLive.Index, :edit
     end
   end
 

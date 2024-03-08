@@ -350,4 +350,20 @@ defmodule Mmbooking.Accounts do
       {:error, :user, changeset, _} -> {:error, changeset}
     end
   end
+
+
+  def list_users do
+    Repo.all(User)
+  end
+
+  def change_user(%User{} = user, attrs \\ %{}) do
+    User.registration_changeset(user, attrs)
+  end
+
+
+  def update_user(%User{} = user, attrs) do
+    user
+    |> User.registration_changeset(attrs)
+    |> Repo.update()
+  end
 end
