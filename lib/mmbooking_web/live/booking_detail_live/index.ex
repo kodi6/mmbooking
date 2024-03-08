@@ -3,6 +3,7 @@ defmodule MmbookingWeb.BookingDetailLive.Index do
 
 
   alias Mmbooking.Visitors
+  alias Mmbooking.EmailNotifier
 
   def mount(%{"id" => id}, _session, socket) do
     visitor = Visitors.get_visitor_by_id(id)
@@ -26,6 +27,12 @@ defmodule MmbookingWeb.BookingDetailLive.Index do
     |> assign(:visitor, Visitors.get_visitor_by_id(id))
   end
 
+  defp apply_action(socket, :custom_email, _params) do
+    socket
+    |> assign(:page_title, "Send email")
+    |> assign(:visitor, socket.assigns.visitor)
+  end
+
 
   def handle_event("delete", %{"id" => id}, socket) do
     visitor = Visitors.get_visitor_by_id(id)
@@ -37,9 +44,6 @@ defmodule MmbookingWeb.BookingDetailLive.Index do
   end
 
 
-  # def handle_event("event", params, socket) do
-  #   IO.inspect(params, label: "params")
-  #   {:ok, socket}
-  # end
+
 
 end
