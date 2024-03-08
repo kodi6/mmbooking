@@ -2,6 +2,12 @@ defmodule Mmbooking.EmailNotifier do
   import Swoosh.Email
 
 
+  use Phoenix.VerifiedRoutes,
+  endpoint: MmbookingWeb.Endpoint,
+  router: MmbookingWeb.Router
+
+
+
   def submission_mail(visitor) do
     email =
     new()
@@ -37,6 +43,30 @@ defmodule Mmbooking.EmailNotifier do
         <p>Dear #{visitor.first_name},</p>
 
         <p>#{message}</p>
+        <p>Best regards,<br>
+
+    """)
+    Mmbooking.Mailer.deliver(email)
+  end
+
+  def send_link(visitor) do
+
+    url =
+      url(
+        MmbookingWeb.Endpoint,
+        ~p"/mmaccess/visitor_page/personal_details/#{visitor.id}/bookings"
+      )
+
+    email =
+    new()
+    |> from("mm@auroville.org.in")
+    |> to(visitor.email)
+    |> subject("Link to visitor page")
+    |> text_body("""
+
+        <p>Dear #{visitor.first_name},</p>
+        <a href=#{url}>link </a>
+
         <p>Best regards,<br>
 
     """)
