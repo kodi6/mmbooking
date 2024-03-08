@@ -1,0 +1,35 @@
+ <.header>
+  Listing Users
+  <:actions>
+    <.link patch={~p"/users/new"}>
+      <.button>New User</.button>
+    </.link>
+  </:actions>
+</.header>
+ 
+ 
+ <.table
+  id="users"
+  rows={@users}>
+  <:col :let={user} label="First Name"><%= user.first_name %></:col>
+  <:col :let={user} label="Last Name"><%= user.last_name %></:col>
+  <:col :let={user} label="Email"><%= user.email %></:col>
+  <:col :let={user} label="Role"><%= user.role %></:col>
+  <:col :let={user} label="Password"><%= user.password %></:col>
+  <:action :let={user}>
+   
+    <.link patch={~p"/users/#{user.id}/edit"}>Edit</.link>
+  </:action>
+</.table>
+
+
+<.modal :if={@live_action in [:new, :edit]} id="user-modal" show on_cancel={JS.patch(~p"/users")}>
+  <.live_component
+    module={MmbookingWeb.UserLive.FormComponent}
+    id={@user.id || :new}
+    title={@page_title}
+    action={@live_action}
+    user={@user}
+    patch={~p"/users"}
+  />
+</.modal>
