@@ -44,6 +44,11 @@ defmodule MmbookingWeb.BookingDetailLive.Index do
   end
 
 
-
+  def handle_event("link", _params, socket) do
+    visitor = socket.assigns.visitor
+    IO.inspect(visitor, label: "visitor")
+    EmailNotifier.send_link(visitor)
+    {:noreply, socket}
+  end
 
 end
