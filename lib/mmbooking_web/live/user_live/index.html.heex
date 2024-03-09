@@ -19,6 +19,14 @@
   <:action :let={user}>
    
     <.link patch={~p"/users/#{user.id}/edit"}>Edit</.link>
+    
+     <.link
+      phx-click={JS.push("delete", value: %{id: user.id}) |> hide("##{user.id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+
   </:action>
 </.table>
 
