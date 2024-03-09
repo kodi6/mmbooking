@@ -40,13 +40,14 @@ defmodule MmbookingWeb.BookingDetailLive.Index do
 
     {:noreply,
     socket
-    |> assign(:visitor, visitor)}
+    |> assign(:visitor, visitor)
+    |> push_redirect(to: ~p"/search_visitor")
+  }
   end
 
 
   def handle_event("link", _params, socket) do
     visitor = socket.assigns.visitor
-    IO.inspect(visitor, label: "visitor")
     EmailNotifier.send_link(visitor)
     {:noreply, socket}
   end
