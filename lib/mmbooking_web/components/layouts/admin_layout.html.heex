@@ -15,19 +15,17 @@
 <.navbar  current_user={@current_user}>
 </.navbar>
  <div class="flex">
-    <%= if @current_user.role == "Super admin" do%>
      <div class="bg-orange-300 w-1/5 min-h-screen">
-     <.link patch={~p"/users"} phx-click={JS.push_focus()}>
-      <.button>User</.button>
-    </.link>
-    </div>
-
-    <% else %>
-
-    <div class="bg-orange-300 w-1/5 min-h-screen">
-      <h1>hello</h1>
+    <%= if @current_user.role == "Super admin" do%>
+    <div class="text-white font-bold flex justify-center my-6">
+      <div class="">
+      <.link patch={~p"/users"} phx-click={JS.push_focus()}>
+        User
+      </.link>
+      </div>
     </div>
     <% end %>
+    </div>
    
 
 
