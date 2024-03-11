@@ -23,7 +23,7 @@ defmodule Mmbooking.Booking.Booking do
   @doc false
   def changeset(booking, attrs) do
     booking
-    |> cast(attrs, [:has_visited, :date, :visitor, :Session])
-    |> validate_required([:has_visited, :date, :visitor, :Session])
+    |> cast(attrs, [:has_visited, :date, :visitor_id, :session_id])
+    |> validate_required([:has_visited, :date, :visitor_id, :session_id])
   end
 end
