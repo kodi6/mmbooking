@@ -2,6 +2,9 @@ defmodule Mmbooking.Template.Template do
   use Ecto.Schema
   import Ecto.Changeset
 
+
+  @primary_key {:id, :binary_id, autogenerate: true}
+  @foreign_key_type :binary_id
   schema "templates" do
     field :name, :string
 
@@ -11,7 +14,7 @@ defmodule Mmbooking.Template.Template do
   @doc false
   def changeset(template, attrs) do
     template
-    |> cast(attrs, [:types])
-    |> validate_required([:types])
+    |> cast(attrs, [:name])
+    |> validate_required([:name])
   end
 end

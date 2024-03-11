@@ -14,5 +14,6 @@ defmodule Mmbooking.Repo.Migrations.CreateBookings do
 
       timestamps(type: :utc_datetime)
     end
+
   end
 end
