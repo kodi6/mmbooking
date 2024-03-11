@@ -3,12 +3,15 @@ defmodule Mmbooking.Booking.Booking do
   import Ecto.Changeset
 
   schema "bookings" do
-    field :reason, :string
     field :date, :date
     field :session, :string
     field :has_visited, :boolean, default: false
-    field :seats, :integer
-    field :other_reason, :string
+
+
+    belongs_to :visitor, Visitor
+    belongs_to :session, Session
+
+
 
     timestamps(type: :utc_datetime)
   end
@@ -16,7 +19,7 @@ defmodule Mmbooking.Booking.Booking do
   @doc false
   def changeset(booking, attrs) do
     booking
-    |> cast(attrs, [:has_visited, :date, :session, :seats, :reason, :other_reason])
-    |> validate_required([:has_visited, :date, :session, :seats, :reason, :other_reason])
+    |> cast(attrs, [:has_visited, :date, :session, :seats, :reason, :other_reason, :visitor, :Session])
+    |> validate_required([:has_visited, :date, :session, :seats, :reason, :other_reason, :Session, :visitor])
   end
 end
