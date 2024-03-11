@@ -2,7 +2,7 @@ defmodule Mmbooking.Visitor.Visitor do
   use Ecto.Schema
   import Ecto.Changeset
 
-
+  alias Mmbooking.Booking.Booking
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -22,6 +22,9 @@ defmodule Mmbooking.Visitor.Visitor do
     field :departure_date, :date
     field :note, :string
     field :stay, :string
+
+
+    has_many :bookings, Booking
 
 
     timestamps(type: :utc_datetime)
