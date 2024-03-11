@@ -3,7 +3,7 @@ defmodule Mmbooking.Repo.Migrations.CreateTemplates do
 
   def change do
     create table(:templates) do
-      add :types, :string
+      add :name, :string
 
       timestamps(type: :utc_datetime)
     end

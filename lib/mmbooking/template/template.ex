@@ -3,7 +3,7 @@ defmodule Mmbooking.Template.Template do
   import Ecto.Changeset
 
   schema "templates" do
-    field :types, :string
+    field :name, :string
 
     timestamps(type: :utc_datetime)
   end
