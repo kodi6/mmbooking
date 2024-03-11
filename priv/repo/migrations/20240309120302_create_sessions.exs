@@ -4,7 +4,7 @@ defmodule Mmbooking.Repo.Migrations.CreateSessions do
   def change do
     create table(:sessions) do
       add :session_number, :integer
-      add :visitgroup_nameor_type, :string
+      add :group_name, :string
       add :chamber_from_time, :time
       add :chamber_to_time, :time
       add :reporting_from_time, :time
