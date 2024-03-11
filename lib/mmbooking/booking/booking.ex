@@ -12,6 +12,7 @@ defmodule Mmbooking.Booking.Booking do
   schema "bookings" do
     field :date, :date
     field :has_visited, :boolean, default: false
+    field :status, :string
 
     belongs_to :visitor, Visitor
     belongs_to :session, Session
