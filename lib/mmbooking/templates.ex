@@ -111,4 +111,9 @@ def create_session(template_id) do
 end
 
 
+def get_template(id) do
+  Repo.get(Template, id)
+end
+
+
 end

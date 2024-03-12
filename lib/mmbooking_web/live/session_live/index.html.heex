@@ -1,7 +1,35 @@
-<.simple_form :let={f} for={:name_form} id="template-form" phx-submit="template">
-      <.custom_input name="name" field={{f, :first_name}} type="text"   value={} label="Template Name"/>
+<.simple_form :let={f} for={:template_name_form} id="template_name-form" phx-submit="template">
+      <.custom_input name="name" field={{f, :template_name}} type="text"   value={} label="Template Name"/>
       <.button>Add Template</.button>
 </.simple_form>
 
 
+
+
+
+
+      <%!-- <.custom_input name="id" field={{f, :first_name}} type="select"   value={"#{@visitor.first_name} #{@visitor.last_name}"} options={Enum.map(@visitors, fn visitor -> {"#{visitor.first_name} #{visitor.last_name}", visitor.id} end)} label="Select Name :" required/> --%>
+
+<%= if @template_name do %>
+  <div>
+  <.simple_form :let={f} for={:template_form} id="template-form" phx-change="change_template">
+      <.custom_input name="id" field={{f, :template}} type="select" prompt="None" value={@template_name} options={Enum.map(@templates, fn template -> {"#{template.name}", template.id} end)} label="Select A Template" required/>
+  </.simple_form>
+  </div>
+
+
+<.table
+  id="sessions"
+  rows={@sessions}>
+  <:col :let={session} label="Session Number"><%= session.session_number %></:col>
+  <:col :let={session} label="Visitor Type"><%= session.group_name %></:col>
+  <:col :let={session} label="Chamber Time From"><%= session.chamber_from_time %></:col>
+  <:col :let={session} label="Chamber Time To"><%= session.chamber_to_time %></:col>
+  <:col :let={session} label="Reporting Time From"><%= session.reporting_from_time %></:col>
+  <:col :let={session} label="Reporting Time To"><%= session.reporting_to_time %></:col>
+  <:col :let={session} label="Seats"><%= session.seats %></:col>
+  <:col :let={session} label="Active"><%= session.is_active%></:col>
+
+</.table>
+<% end %>
 
