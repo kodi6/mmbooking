@@ -98,7 +98,7 @@ last_name: "bank",
 
 
 
-attrs = %{email: "Balck@gmail.com",
+attrs = %{email: "Blackk@gmail.com",
 password: "2",
 role: "Admin",
 first_name: "john",
