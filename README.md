@@ -24,3 +24,9 @@ alias Mmbooking.Template.Template
 alias Mmbooking.Templates
 
 alias Mmbooking.Session.Session
+
+ alias Mmbooking.Templates
+  alias Mmbooking.Repo
+
+  alias Mmbooking.Sessions
+  alias Mmbooking.Template.Template
