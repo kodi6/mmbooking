@@ -44,7 +44,6 @@ defmodule MmbookingWeb.SessionLive.Index do
 
 
   def handle_event("change_template", %{"name" => name}, socket) do
-    IO.inspect(name, label: "name")
     [sessions, template] = if name == "" do
       [[], "None"]
     else
