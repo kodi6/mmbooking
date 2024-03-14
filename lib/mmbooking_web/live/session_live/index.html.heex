@@ -31,15 +31,34 @@
   <:col :let={session} label="Reporting Time To"><%= session.reporting_to_time %></:col>
   <:col :let={session} label="Seats"><%= session.seats %></:col>
   <:col :let={session} label="Active">
-
   <%= case session.is_active do %>
   <% true -> %>
     Yes
   <% false -> %>
     No
   <% end %>
-
-
   </:col>
 </.table>
+
+  <.link patch={~p"/sessions/add_session"}>
+      <.button>Add session</.button>
+    </.link>
+
 <% end %>
+
+
+
+<.modal :if={@live_action in [:add_session, :edit]} id="session-modal" show on_cancel={JS.patch(~p"/sessions")}>
+  <.live_component
+    module={MmbookingWeb.SessionLive.FormComponent}
+    id={@session.id || :add_session}
+    title={@page_title}
+    action={@live_action}
+    session={@session}
+    template_name={@template_name}
+    sessions={@sessions}
+    session_number={@session_number}
+    patch={~p"/sessions"}
+
+  />
+</.modal>

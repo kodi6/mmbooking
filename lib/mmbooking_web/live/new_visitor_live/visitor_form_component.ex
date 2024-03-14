@@ -59,7 +59,7 @@ defmodule MmbookingWeb.NewVisitorLive.VisitorFormComponent do
 
       visited = case visited do
         "Yes" -> true
-        _-> false
+        _ -> false
       end
     {:noreply,
     socket
