@@ -12,9 +12,11 @@ def get_sesssions_tmp_id(template_id) do
   |> Repo.all()
 end
 
+def change_session(%Session{} = session, attrs \\ %{}) do
+  Session.changeset(session, attrs)
+end
 
-
-def create_session(template_id) do
+def create_default_session(template_id) do
 
   sessions = [
     %{date: ~D[2023-03-11],
@@ -209,5 +211,24 @@ def create_darshan_session(template_id) do
     Repo.insert!(changeset)
   end)
 end
+
+
+def create_session(attrs \\ %{}) do
+  %Session{}
+  |> Session.changeset(attrs)
+  |> Repo.insert()
+end
+
+def list_sessions do
+  Repo.all(Session)
+end
+
+
+def get_sessions_by_tmp_id(template_id) do
+  Visitor
+  |> where(template_id: ^template_id)
+  |> Repo.all()
+end
+
 
 end
