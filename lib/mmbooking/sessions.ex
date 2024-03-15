@@ -214,7 +214,7 @@ end
 
 def create_session(attrs \\ %{}) do
   %Session{}
-  |> Session.changeset(attrs)
+  |> Session.duplicate_changeset(attrs)
   |> Repo.insert()
 end
 

@@ -30,7 +30,7 @@ defmodule Mmbooking.Session.Session do
   end
 
   @doc false
-  def changeset(session, attrs) do
+  def duplicate_changeset(session, attrs) do
     session
     |> cast(attrs, [:session_number, :group_name, :chamber_from_time, :chamber_to_time, :reporting_from_time, :reporting_to_time, :seats, :date, :template_id, :is_active])
     |> validate_required([:session_number, :group_name, :chamber_from_time, :chamber_to_time, :reporting_from_time, :reporting_to_time, :seats, :template_id])
@@ -67,7 +67,14 @@ defmodule Mmbooking.Session.Session do
    end
 
 
-   def edit_changeset(session, attrs) do
+   def changeset(session, attrs) do
+    session
+    |> cast(attrs, [:session_number, :group_name, :chamber_from_time, :chamber_to_time, :reporting_from_time, :reporting_to_time, :seats, :date, :template_id, :is_active])
+    |> validate_required([:session_number, :group_name, :chamber_from_time, :chamber_to_time, :reporting_from_time, :reporting_to_time, :seats, :template_id])
+  end
+
+
+  def edit_changeset(session, attrs) do
     session
     |> cast(attrs, [:session_number, :group_name, :chamber_from_time, :chamber_to_time, :reporting_from_time, :reporting_to_time, :seats, :date, :template_id, :is_active])
     |> validate_required([:session_number, :group_name, :chamber_from_time, :chamber_to_time, :reporting_from_time, :reporting_to_time, :seats, :template_id])

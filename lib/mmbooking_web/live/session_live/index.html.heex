@@ -44,11 +44,13 @@
   <:actions> 
       <.button  name="action" value="remove">Remove</.button>      
       <.button  name="action" value="edit">Edit</.button>
+       <.link patch={~p"/sessions/add_session"}>
+          <.button class="mt-10">Add session</.button>
+       </.link>
   </:actions>
+ 
 </.simple_form>
-  <.link patch={~p"/sessions/add_session"}>
-      <.button class="mt-10">Add session</.button>
-  </.link>
+  
 <% end %>
 
 <.modal :if={@live_action in [:add_session, :edit_session]} id="session-modal" show on_cancel={JS.patch(~p"/sessions/?template_id=#{@template_id}")}>
