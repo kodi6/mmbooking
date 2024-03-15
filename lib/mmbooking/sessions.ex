@@ -212,7 +212,6 @@ def create_darshan_session(template_id) do
   end)
 end
 
-
 def create_session(attrs \\ %{}) do
   %Session{}
   |> Session.changeset(attrs)
@@ -223,12 +222,10 @@ def list_sessions do
   Repo.all(Session)
 end
 
-
 def get_sessions_by_tmp_id(template_id) do
   Visitor
   |> where(template_id: ^template_id)
   |> Repo.all()
 end
-
 
 end
