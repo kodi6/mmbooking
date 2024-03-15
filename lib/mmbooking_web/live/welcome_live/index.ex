@@ -4,8 +4,6 @@ defmodule MmbookingWeb.WelcomeLive.Index do
 
   alias Mmbooking.Visitors
 
-
-
   def mount(_params, _session, socket) do
     {:ok,
     socket

@@ -15,7 +15,6 @@ defmodule MmbookingWeb.SessionLive.Index do
     |> assign(:sessions, [])}
   end
 
-
   def handle_params(params, _url, socket) do
     if params == %{} do
       {:noreply, apply_action(socket, socket.assigns.live_action, params)}
@@ -32,11 +31,8 @@ defmodule MmbookingWeb.SessionLive.Index do
     end
   end
 
-
   defp apply_action(socket, :add_session, _params) do
     last_session = List.last(socket.assigns.sessions)
-    IO.inspect(last_session.session_number, label: "session_number")
-
     socket
     |> assign(:page_title, "New session")
     |> assign(:session, %Session{})
@@ -46,11 +42,9 @@ defmodule MmbookingWeb.SessionLive.Index do
 
   end
 
-
   defp apply_action(socket, :index, _params) do
     socket
   end
-
 
   def handle_event("template", params, socket) do
     name = Map.get(params, "name")
