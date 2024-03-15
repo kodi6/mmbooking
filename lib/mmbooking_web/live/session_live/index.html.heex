@@ -20,9 +20,11 @@
 
 
 <%= if @sessions !== [] do %>
+<.simple_form :let={f} for={:check_form}  phx-submit="radio">
 <.table
   id="sessions"
   rows={@sessions}>
+  <:col :let={session}><.custom_input name="id" type="radio" value={session.id} /></:col>
   <:col :let={session} label="Session Number"><%= session.session_number %></:col>
   <:col :let={session} label="Visitor Type"><%= session.group_name %></:col>
   <:col :let={session} label="Chamber Time From"><%= session.chamber_from_time %></:col>
@@ -39,16 +41,17 @@
   <% end %>
   </:col>
 </.table>
-
+  <:actions> 
+      <.button  name="action" value="remove">Remove</.button>      
+      <.button  name="action" value="edit">Edit</.button>
+  </:actions>
+</.simple_form>
   <.link patch={~p"/sessions/add_session"}>
-      <.button>Add session</.button>
-    </.link>
-
+      <.button class="mt-10">Add session</.button>
+  </.link>
 <% end %>
 
-
-
-<.modal :if={@live_action in [:add_session, :edit]} id="session-modal" show on_cancel={JS.patch(~p"/sessions")}>
+<.modal :if={@live_action in [:add_session, :edit_session]} id="session-modal" show on_cancel={JS.patch(~p"/sessions/?template_id=#{@template_id}")}>
   <.live_component
     module={MmbookingWeb.SessionLive.FormComponent}
     id={@session.id || :add_session}
@@ -58,7 +61,9 @@
     template_name={@template_name}
     sessions={@sessions}
     session_number={@session_number}
-    patch={~p"/sessions"}
-
+    patch={~p"/sessions/?template_id=#{@template_id}"}
   />
 </.modal>
+
+
+<%!-- ~p"/sessions/?template_id=#{session.template_id}" --%>

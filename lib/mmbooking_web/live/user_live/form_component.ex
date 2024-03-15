@@ -81,7 +81,7 @@ defmodule MmbookingWeb.UserLive.FormComponent do
         {:noreply,
          socket
          |> put_flash(:info, "User created successfully")
-         |> push_patch(to: socket.assigns.patch)}
+         |> push_patch(to: ~p"/sessions/?template_id=#{@template_id}")}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign_form(socket, changeset)}

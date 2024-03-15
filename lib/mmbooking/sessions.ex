@@ -228,4 +228,18 @@ def get_sessions_by_tmp_id(template_id) do
   |> Repo.all()
 end
 
+def get_session!(id), do: Repo.get!(Session, id)
+
+def update_session(%Session{} = session, attrs) do
+  session
+  |> Session.edit_changeset(attrs)
+  |> Repo.update()
+end
+
+
+def delete_session(%Session{} = session) do
+  Repo.delete(session)
+end
+
+
 end

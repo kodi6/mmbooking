@@ -36,7 +36,6 @@ defmodule Mmbooking.Session.Session do
     |> validate_required([:session_number, :group_name, :chamber_from_time, :chamber_to_time, :reporting_from_time, :reporting_to_time, :seats, :template_id])
     |> check_duplicate_from_time()
     |> check_duplicate_to_time()
-
   end
 
   def check_duplicate_from_time(changeset) do
@@ -53,7 +52,6 @@ defmodule Mmbooking.Session.Session do
     end
    end
 
-
    def check_duplicate_to_time(changeset) do
     to_time = get_field(changeset, :chamber_to_time)
     if to_time do
@@ -67,4 +65,14 @@ defmodule Mmbooking.Session.Session do
       changeset
     end
    end
+
+
+   def edit_changeset(session, attrs) do
+    session
+    |> cast(attrs, [:session_number, :group_name, :chamber_from_time, :chamber_to_time, :reporting_from_time, :reporting_to_time, :seats, :date, :template_id, :is_active])
+    |> validate_required([:session_number, :group_name, :chamber_from_time, :chamber_to_time, :reporting_from_time, :reporting_to_time, :seats, :template_id])
+  end
+
+
+
 end
