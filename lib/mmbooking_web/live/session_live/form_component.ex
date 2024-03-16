@@ -29,8 +29,8 @@ defmodule MmbookingWeb.SessionLive.FormComponent do
         <.input field={@form[:chamber_to_time]} type="time" label="Chamber Time-To" value={"17:42"}/>
         <.input field={@form[:reporting_from_time]} type="time" label="Reporting Time-From" value={"17:42"}/>
         <.input field={@form[:reporting_to_time]} type="time" label="Reporting Time-To" value={"17:42"}/>
-        <.input field={@form[:group_name]} type="text" label="Visitor Type" value={"A"}/>
-        <.input field={@form[:seats]} type="text" label="Maximum" value={3}/>
+        <.input field={@form[:group_name]} type="select" prompt="Select Type" options={["Group A", "Group B"]}label="Visitor Type" value={"A"}/>
+        <.input field={@form[:seats]} type="text" label="Maximum seats" value={3}/>
         <:actions>
           <.button phx-disable-with="Saving...">Submit</.button>
         </:actions>
