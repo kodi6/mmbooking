@@ -68,6 +68,8 @@ defmodule MmbookingWeb.Router do
 
       live "/sessions", SessionLive.Index, :index
       live "/sessions/add_session", SessionLive.Index, :add_session
+      live "/sessions/add_session/:session_id/edit_session", SessionLive.Index, :edit_session
+
     end
   end
 

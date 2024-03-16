@@ -214,7 +214,7 @@ end
 
 def create_session(attrs \\ %{}) do
   %Session{}
-  |> Session.changeset(attrs)
+  |> Session.duplicate_changeset(attrs)
   |> Repo.insert()
 end
 
@@ -227,5 +227,19 @@ def get_sessions_by_tmp_id(template_id) do
   |> where(template_id: ^template_id)
   |> Repo.all()
 end
+
+def get_session!(id), do: Repo.get!(Session, id)
+
+def update_session(%Session{} = session, attrs) do
+  session
+  |> Session.edit_changeset(attrs)
+  |> Repo.update()
+end
+
+
+def delete_session(%Session{} = session) do
+  Repo.delete(session)
+end
+
 
 end
