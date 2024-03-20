@@ -212,7 +212,7 @@ def create_default_session(template_id) do
 
 def create_session(attrs \\ %{}) do
   %Session{}
-  |> Session.duplicate_changeset(attrs)
+  |> Session.changeset(attrs)
   |> Repo.insert()
 end
 

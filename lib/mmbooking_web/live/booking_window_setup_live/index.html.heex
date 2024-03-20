@@ -16,7 +16,7 @@
 
 
 
-
+<%= if @sessions !== [] do %>
 <.table
   id="sessions"
   rows={@sessions}>
@@ -27,4 +27,7 @@
   <:col :let={session} label="Reporting Time From"><%= session.reporting_from_time %></:col>
   <:col :let={session} label="Reporting Time To"><%= session.reporting_to_time %></:col>
   <:col :let={session} label="Seats"><%= session.seats %></:col>
-</.table> 
+</.table>
+
+<.button phx-click="save">Save</.button>
+<% end %>
