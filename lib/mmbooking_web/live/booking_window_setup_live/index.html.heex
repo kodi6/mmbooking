@@ -1,0 +1,30 @@
+<div>
+  <.simple_form :let={f} for={:window_form} id="window_form-form" phx-change="window_template">
+    <.custom_input name="date" field={{f, :date}} type="date"  value={@date}  label="Date"/>
+    <.custom_input
+            name="template_name"
+            field={{f, :template_name}}
+            type="select"
+            options={@templates}
+            label="Select template"
+            prompt="None"
+            value={@template_name}
+              />
+  </.simple_form>
+</div> 
+
+
+
+
+
+<.table
+  id="sessions"
+  rows={@sessions}>
+  <:col :let={session} label="Session Number"><%= session.session_number %></:col>
+  <:col :let={session} label="Visitor Type"><%= session.group_name %></:col>
+  <:col :let={session} label="Chamber Time From"><%= session.chamber_from_time %></:col>
+  <:col :let={session} label="Chamber Time To"><%= session.chamber_to_time %></:col>
+  <:col :let={session} label="Reporting Time From"><%= session.reporting_from_time %></:col>
+  <:col :let={session} label="Reporting Time To"><%= session.reporting_to_time %></:col>
+  <:col :let={session} label="Seats"><%= session.seats %></:col>
+</.table> 
