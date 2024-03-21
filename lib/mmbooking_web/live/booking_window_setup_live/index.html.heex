@@ -30,4 +30,23 @@
 </.table>
 
 <.button phx-click="save">Save</.button>
+<.link patch={~p"/booking_window_setup/add_session"}>
+    <.button>Add Session</.button>
+</.link>
 <% end %>
+
+
+<.modal :if={@live_action in [:add_session]} id="session-modal" show on_cancel={JS.patch(~p"/booking_window_setup/?date=#{Date.to_string(@date)}&template_name=#{@template_name}")}>
+  <.live_component
+    module={MmbookingWeb.BookingWindowSetupLive.SessionFormComponent}
+    id={:add_session}
+    title={@page_title}
+    action={@live_action}
+    date={@date}
+    template_name={@template_name}
+    session={@session}
+    session_number={@session_number}
+    patch={~p"/booking_window_setup/?date=#{Date.to_string(@date)}&template_name=#{@template_name}"}
+  />
+</.modal>
+

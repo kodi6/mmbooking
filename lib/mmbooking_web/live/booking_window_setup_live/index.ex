@@ -53,7 +53,11 @@ defmodule MmbookingWeb.BookingWindowSetupLive.Index do
           template = Templates.get_template(session.template_id)
           {:noreply,
           socket
-          |> put_flash(:error, "The date is assinged to #{template.name}")}
+          |> put_flash(:error, "The date is assinged to #{template.name}")
+          |> assign(:date, date)
+          |> assign(:sessions, sessions)
+          |> assign(:template_name, template.name)
+          }
         else
           {:noreply,
           socket
@@ -63,9 +67,8 @@ defmodule MmbookingWeb.BookingWindowSetupLive.Index do
         end
       end
     else
-      {:noreply, socket}
+      {:noreply, apply_action(socket, socket.assigns.live_action, params)}
     end
-
   end
 
   def handle_event("window_template", %{"date" => date, "template_name" => template_name}, socket) do
@@ -82,5 +85,23 @@ defmodule MmbookingWeb.BookingWindowSetupLive.Index do
     end)
     {:noreply, socket}
   end
+
+  defp apply_action(socket, :index, _params) do
+    socket
+  end
+
+  defp apply_action(socket, :add_session, _params) do
+    last_session = List.last(socket.assigns.sessions)
+    count = length(socket.assigns.sessions) + 1
+    IO.inspect(count, label: "count")
+    socket
+    |> assign(:page_title, "New User")
+    |> assign(:session, %Session{})
+    |> assign(:session_number, count)
+    |> assign(:date, socket.assigns.date)
+    |> assign(:template_name, socket.assigns.template_name)
+  end
+
+
 
 end

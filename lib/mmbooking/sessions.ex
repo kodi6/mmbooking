@@ -9,12 +9,14 @@ alias Mmbooking.Session.Session
 def get_sessions_tmp_id(template_id) do
   Session
   |> where(template_id: ^template_id)
+  |> order_by(asc: :session_number)
   |> Repo.all()
 end
 
 def get_sessions_date(date) do
   Session
   |> where(date: ^date)
+  |> order_by(asc: :session_number)
   |> Repo.all()
 end
 
@@ -217,9 +219,10 @@ def create_session(attrs \\ %{}) do
 end
 
 def list_sessions do
-  Repo.all(Session)
-end
-
+  Session
+  |> order_by(asc: :session_number)
+  |> Repo.all()
+ end
 
 
 def get_session!(id), do: Repo.get!(Session, id)
