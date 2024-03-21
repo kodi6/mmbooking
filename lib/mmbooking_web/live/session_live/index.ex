@@ -20,7 +20,7 @@ defmodule MmbookingWeb.SessionLive.Index do
       template_id = Map.get(params, "template_id")
            template = Templates.get_template(template_id)
            templates =  Templates.list_templates()
-           sessions = Sessions.get_sesssions_tmp_id(template_id)
+           sessions = Sessions.get_sessions_tmp_id(template_id)
           {:noreply,
           socket
           |> assign(:templates, templates)
@@ -38,7 +38,6 @@ defmodule MmbookingWeb.SessionLive.Index do
     |> assign(:session, session)
     |> assign(:template_id, session.template_id)
     |> assign(:session_number, session.session_number)
-
   end
 
   defp apply_action(socket, :add_session, _params) do
@@ -86,7 +85,7 @@ defmodule MmbookingWeb.SessionLive.Index do
       [[], "None"]
     else
       template = Templates.get_template_by_name(name)
-      sessions = Sessions.get_sesssions_tmp_id(template.id)
+      sessions = Sessions.get_sessions_tmp_id(template.id)
       [sessions, template.name]
     end
     templates =  Templates.list_templates()
@@ -107,7 +106,7 @@ defmodule MmbookingWeb.SessionLive.Index do
       id = Map.get(params, "id")
       session = Sessions.get_session!(id)
       {:ok, _} = Sessions.delete_session(session)
-      sessions = Sessions.get_sesssions_tmp_id(session.template_id)
+      sessions = Sessions.get_sessions_tmp_id(session.template_id)
       {:noreply,
       socket
       |> assign(:sessions, sessions)}
