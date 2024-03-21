@@ -102,6 +102,13 @@ defmodule MmbookingWeb.BookingWindowSetupLive.Index do
     |> assign(:template_name, socket.assigns.template_name)
   end
 
-
+  def handle_event("remove", %{"id" => id, "template_id" => template_id}, socket) do
+    session = Sessions.get_session!(id)
+    {:ok, _} = Sessions.delete_session(session)
+    sessions = Sessions.get_sessions_tmp_id(template_id)
+    {:noreply,
+    socket
+    |> assign(:sessions, sessions)}
+  end
 
 end

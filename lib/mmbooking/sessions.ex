@@ -238,5 +238,4 @@ def delete_session(%Session{} = session) do
   Repo.delete(session)
 end
 
-
 end

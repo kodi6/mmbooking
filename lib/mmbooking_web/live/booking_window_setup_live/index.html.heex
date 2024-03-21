@@ -27,6 +27,14 @@
   <:col :let={session} label="Reporting Time From"><%= session.reporting_from_time %></:col>
   <:col :let={session} label="Reporting Time To"><%= session.reporting_to_time %></:col>
   <:col :let={session} label="Seats"><%= session.seats %></:col>
+  <:action :let={session}>
+      <.button
+      phx-click={JS.push("remove", value: %{id: session.id, template_id: session.template_id})}
+
+      >
+       Remove
+      </.button>
+  </:action>
 </.table>
 
 <.button phx-click="save">Save</.button>
