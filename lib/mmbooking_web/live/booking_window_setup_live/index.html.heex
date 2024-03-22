@@ -1,7 +1,16 @@
 <div>
   <.simple_form :let={f} for={:window_form} id="window_form-form" phx-change="window_template">
     <.custom_input name="date" field={{f, :date}} type="date"  value={@date}  label="Date"/>
-    <.custom_input
+   
+     <%= if @assigned do%>
+     <.custom_input
+            name="template_name"
+            field={{f, :template_name}}
+            type="text"
+            value={@template_name}
+            readonly/>
+      <% else %>  
+       <.custom_input
             name="template_name"
             field={{f, :template_name}}
             type="select"
@@ -9,7 +18,8 @@
             label="Select template"
             prompt="None"
             value={@template_name}
-              />
+              />    
+      <% end %>      
   </.simple_form>
 </div> 
 

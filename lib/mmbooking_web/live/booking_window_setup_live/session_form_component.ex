@@ -80,7 +80,6 @@ defmodule MmbookingWeb.BookingWindowSetupLive.SessionFormComponent do
 
 
   defp save_session(socket, :add_session, session_params) do
-    IO.inspect(session_params, label: "")
     template_name = Templates.get_template_by_name(socket.assigns.template_name)
     session_params = Map.put(session_params, "template_id", template_name.id)
     case Sessions.create_session(session_params) do

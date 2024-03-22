@@ -5,7 +5,6 @@ defmodule MmbookingWeb.BookingWindowSetupLive.Index do
 
   alias Mmbooking.Templates
   alias Mmbooking.Repo
-  alias Mmbooking.Template.Template
   alias Mmbooking.Sessions
   alias Mmbooking.Session.Session
 
@@ -20,11 +19,12 @@ defmodule MmbookingWeb.BookingWindowSetupLive.Index do
         template = Templates.get_template(session.template_id)
         [Sessions.get_sessions_date(date), template.name]
     else
-        [[], nil]
+        [[], "None"]
     end
 
     {:ok,
     socket
+    |> assign(:assigned, false)
     |> assign(:templates, templates)
     |> assign(:date, date)
     |> assign(:sessions, sessions)
@@ -41,7 +41,7 @@ defmodule MmbookingWeb.BookingWindowSetupLive.Index do
         socket
         |> assign(:date, date)
         |> assign(:sessions, [])
-        |> assign(:template_name, nil)}
+        |> assign(:template_name, "None")}
       else
         template = Templates.get_template_by_name(template_name)
         sessions = Sessions.get_sessions_tmp_id(template.id)
@@ -49,21 +49,26 @@ defmodule MmbookingWeb.BookingWindowSetupLive.Index do
 
         if exists do
           sessions = Repo.all(from s in Session, where: s.date == ^date)
+
           session = List.first(sessions)
           template = Templates.get_template(session.template_id)
           {:noreply,
           socket
-          |> put_flash(:error, "The date is assinged to #{template.name}")
           |> assign(:date, date)
           |> assign(:sessions, sessions)
           |> assign(:template_name, template.name)
+          |> assign(:assigned, true)
           }
         else
+          sessions = Enum.filter(sessions, fn session -> session.date == nil end)
           {:noreply,
           socket
           |> assign(:date, date)
           |> assign(:sessions, sessions)
-          |> assign(:template_name, template.name)}
+          |> assign(:template_name, template.name)
+          |> assign(:assigned, false)
+
+        }
         end
       end
     else
@@ -83,7 +88,9 @@ defmodule MmbookingWeb.BookingWindowSetupLive.Index do
       updated_session_params = Map.put(session_params, :date, socket.assigns.date)
       Sessions.create_session(updated_session_params)
     end)
-    {:noreply, socket}
+    {:noreply,
+    socket
+    |> assign(:assigned, true)}
   end
 
   defp apply_action(socket, :index, _params) do
@@ -91,9 +98,7 @@ defmodule MmbookingWeb.BookingWindowSetupLive.Index do
   end
 
   defp apply_action(socket, :add_session, _params) do
-    last_session = List.last(socket.assigns.sessions)
     count = length(socket.assigns.sessions) + 1
-    IO.inspect(count, label: "count")
     socket
     |> assign(:page_title, "New User")
     |> assign(:session, %Session{})
@@ -106,6 +111,7 @@ defmodule MmbookingWeb.BookingWindowSetupLive.Index do
     session = Sessions.get_session!(id)
     {:ok, _} = Sessions.delete_session(session)
     sessions = Sessions.get_sessions_tmp_id(template_id)
+    sessions = Enum.filter(sessions, fn session -> session.date == nil end)
     {:noreply,
     socket
     |> assign(:sessions, sessions)}
