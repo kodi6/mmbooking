@@ -1,0 +1,70 @@
+<div>
+  <.simple_form :let={f} for={:window_form} id="window_form-form" phx-change="window_template">
+    <.custom_input name="date" field={{f, :date}} type="date"  value={@date}  label="Date"/>
+   
+     <%= if @assigned do%>
+     <.custom_input
+            name="template_name"
+            field={{f, :template_name}}
+            type="text"
+            value={@template_name}
+            readonly/>
+      <% else %>  
+       <.custom_input
+            name="template_name"
+            field={{f, :template_name}}
+            type="select"
+            options={@templates}
+            label="Select template"
+            prompt="None"
+            value={@template_name}
+              />    
+      <% end %>      
+  </.simple_form>
+</div> 
+
+
+
+
+<%= if @sessions !== [] do %>
+<.table
+  id="sessions"
+  rows={@sessions}>
+  <:col :let={session} label="Session Number"><%= session.session_number %></:col>
+  <:col :let={session} label="Visitor Type"><%= session.group_name %></:col>
+  <:col :let={session} label="Chamber Time From"><%= session.chamber_from_time %></:col>
+  <:col :let={session} label="Chamber Time To"><%= session.chamber_to_time %></:col>
+  <:col :let={session} label="Reporting Time From"><%= session.reporting_from_time %></:col>
+  <:col :let={session} label="Reporting Time To"><%= session.reporting_to_time %></:col>
+  <:col :let={session} label="Seats"><%= session.seats %></:col>
+  <:action :let={session}>
+      <.button
+      phx-click={JS.push("remove", value: %{id: session.id, template_id: session.template_id})}
+
+      >
+       Remove
+      </.button>
+  </:action>
+</.table>
+
+<.button phx-click="save">Save</.button>
+<.link patch={~p"/booking_window_setup/add_session"}>
+    <.button>Add Session</.button>
+</.link>
+<% end %>
+
+
+<.modal :if={@live_action in [:add_session]} id="session-modal" show on_cancel={JS.patch(~p"/booking_window_setup/?date=#{Date.to_string(@date)}&template_name=#{@template_name}")}>
+  <.live_component
+    module={MmbookingWeb.BookingWindowSetupLive.SessionFormComponent}
+    id={:add_session}
+    title={@page_title}
+    action={@live_action}
+    date={@date}
+    template_name={@template_name}
+    session={@session}
+    session_number={@session_number}
+    patch={~p"/booking_window_setup/?date=#{Date.to_string(@date)}&template_name=#{@template_name}"}
+  />
+</.modal>
+
