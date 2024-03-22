@@ -1,6 +1,20 @@
-<.link
-href={~p"/users/log_in"}
-class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
->
-Log in
-</.link>
+<.table
+  id="lists"
+  rows={@lists}>
+  <:col :let={list} label="Session Number">
+  <tr>
+    <td>
+    <%= Enum.map(List.first(list.mondy), fn i -> %>
+    <tbody>
+    <tr>
+      <td><%= i %></td>
+      
+    </tr>
+  </tbody>
+    <% end) %>
+  </td>
+ </tr>
+  </:col>
+
+</.table>
+
