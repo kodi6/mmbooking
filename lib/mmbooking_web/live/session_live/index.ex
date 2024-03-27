@@ -85,7 +85,7 @@ defmodule MmbookingWeb.SessionLive.Index do
       [[], "None"]
     else
       template = Templates.get_template_by_name(name)
-      sessions = Sessions.get_sessions_tmp_id(template.id)
+      sessions = Sessions.get_sessions_tmp_id(template.id) |> Enum.filter(fn session -> session.date == nil end)
       [sessions, template.name]
     end
     templates =  Templates.list_templates()

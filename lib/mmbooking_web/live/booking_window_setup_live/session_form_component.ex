@@ -5,6 +5,8 @@ defmodule MmbookingWeb.BookingWindowSetupLive.SessionFormComponent do
 
   alias Mmbooking.Sessions
   alias Mmbooking.Templates
+  alias Mmbooking.Session.Session
+
 
   @impl true
   def render(assigns) do
@@ -29,7 +31,7 @@ defmodule MmbookingWeb.BookingWindowSetupLive.SessionFormComponent do
         <.input field={@form[:chamber_to_time]} type="time" label="Chamber Time-To" value={"17:42"}/>
         <.input field={@form[:reporting_from_time]} type="time" label="Reporting Time-From" value={"17:42"}/>
         <.input field={@form[:reporting_to_time]} type="time" label="Reporting Time-To" value={"17:42"}/>
-        <.input field={@form[:group_name]} type="select" prompt="Select Type" options={["Group A", "Group B"]}label="Visitor Type" />
+        <.input field={@form[:group_name]} type="select" prompt="Select Type" options={["Group A", "Group B"]}label="Visitor Type" value={"Group A"}/>
         <.input field={@form[:seats]} type="text" label="Maximum seats" value={3}/>
         <:actions>
           <.button phx-disable-with="Saving...">Submit</.button>
@@ -63,36 +65,12 @@ defmodule MmbookingWeb.BookingWindowSetupLive.SessionFormComponent do
     save_session(socket, socket.assigns.action, session_params)
   end
 
-
-  # defp save_session(socket, :edit_session, session_params) do
-  #   case Sessions.update_session(socket.assigns.session, session_params) do
-  #     {:ok, _session} ->
-
-  #       {:noreply,
-  #        socket
-  #       #  |> put_flash(:info, "User updated successfully")
-  #        |> push_patch(to: socket.assigns.patch)}
-
-  #     {:error, %Ecto.Changeset{} = changeset} ->
-  #       {:noreply, assign_form(socket, changeset)}
-  #   end
-  # end
-
-
   defp save_session(socket, :add_session, session_params) do
     template_name = Templates.get_template_by_name(socket.assigns.template_name)
     session_params = Map.put(session_params, "template_id", template_name.id)
-    case Sessions.create_session(session_params) do
-      {:ok, _session} ->
-
-        {:noreply,
-         socket
-        #  |> put_flash(:info, "session created successfully")
-         |> push_patch(to: socket.assigns.patch)}
-
-      {:error, %Ecto.Changeset{} = changeset} ->
-        {:noreply, assign_form(socket, changeset)}
-    end
+    {:noreply,
+      socket
+    |> push_patch(to: ~p"/booking_window_setup/?#{session_params}")}
   end
 
   defp assign_form(socket, %Ecto.Changeset{} = changeset) do

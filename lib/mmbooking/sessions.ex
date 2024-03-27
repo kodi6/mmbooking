@@ -215,7 +215,7 @@ def create_default_session(template_id) do
 def create_session(attrs \\ %{}) do
   %Session{}
   |> Session.changeset(attrs)
-  |> Repo.insert()
+  |> Repo.insert!()
 end
 
 def list_sessions do
