@@ -1,4 +1,3 @@
-
 <.simple_form :let={f} for={:date_form} id="date-form" phx-change="change_form">
       <.custom_input name="date" field={{f, :date}} type="date"   value={@date} label="date" />
 </.simple_form>
@@ -44,7 +43,7 @@
 
 <% end %>
 
-<.modal :if={@live_action in [:add_session]} id="session-modal" show on_cancel={JS.patch(~p"/booking_window_setup/?template_name=#{@template_name}")}>
+<.modal :if={@live_action in [:add_session]} id="session-modal" show on_cancel={JS.push("clicked")}>
   <.live_component
     module={MmbookingWeb.BookingWindowSetupLive.SessionFormComponent}
     id={:add_session}

@@ -68,9 +68,8 @@ defmodule MmbookingWeb.BookingWindowSetupLive.SessionFormComponent do
   defp save_session(socket, :add_session, session_params) do
     template_name = Templates.get_template_by_name(socket.assigns.template_name)
     session_params = Map.put(session_params, "template_id", template_name.id)
-    {:noreply,
-      socket
-    |> push_patch(to: ~p"/booking_window_setup/?#{session_params}")}
+    send(self(), {:update_session, session_params})
+    {:noreply, socket}
   end
 
   defp assign_form(socket, %Ecto.Changeset{} = changeset) do
