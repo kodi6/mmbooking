@@ -71,7 +71,7 @@ defmodule Mmbooking.Session.Session do
     session
     |> cast(attrs, [:session_number, :group_name, :chamber_from_time, :chamber_to_time, :reporting_from_time, :reporting_to_time, :seats, :date, :template_id])
     |> validate_required([:session_number, :group_name, :chamber_from_time, :chamber_to_time, :reporting_from_time, :reporting_to_time, :seats, :template_id])
-  end
+   end
 
 
   def edit_changeset(session, attrs) do
@@ -80,6 +80,9 @@ defmodule Mmbooking.Session.Session do
     |> validate_required([:session_number, :group_name, :chamber_from_time, :chamber_to_time, :reporting_from_time, :reporting_to_time, :seats, :template_id])
   end
 
-
+  def changeset_params(session, attrs) do
+    session
+    |> cast(attrs, [:session_number, :group_name, :chamber_from_time, :chamber_to_time, :reporting_from_time, :reporting_to_time, :seats, :date, :template_id])
+   end
 
 end

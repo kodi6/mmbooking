@@ -24,6 +24,10 @@ def change_session(%Session{} = session, attrs \\ %{}) do
   Session.changeset(session, attrs)
 end
 
+def change_session_params(%Session{} = session, attrs \\ %{}) do
+  Session.changeset_params(session, attrs)
+end
+
 def create_default_session(template_id) do
   sessions = [
      %{
@@ -214,7 +218,7 @@ def create_default_session(template_id) do
 
 def create_session(attrs \\ %{}) do
   %Session{}
-  |> Session.changeset(attrs)
+  |> Session.changeset_params(attrs)
   |> Repo.insert!()
 end
 

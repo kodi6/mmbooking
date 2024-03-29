@@ -1,10 +1,24 @@
-<.simple_form :let={f} for={:date_form} id="date-form" phx-change="change_form">
+<.simple_form :let={f} for={:date_form} id="date-form" phx-change="change_date">
       <.custom_input name="date" field={{f, :date}} type="date"   value={@date} label="date" />
 </.simple_form>
 
 
    <div>
-  <.simple_form :let={f} for={:template_form} id="template_name-form" phx-change="change_form">
+  
+
+  <%= if @is_assigned do %>
+   <.simple_form :let={f} for={:template_form} id="template_name-form" phx-change="change_form">
+            <.custom_input
+            name="template_name"
+            field={{f, :template_name}}
+            type="text"
+            value={@template_name}
+              />
+  </.simple_form>
+
+  <% else %>
+
+  <.simple_form :let={f} for={:template_form} id="template_name-form" phx-change="change_template">
             <.custom_input
             name="template_name"
             field={{f, :template_name}}
@@ -15,35 +29,35 @@
             value={@template_name}
               />
   </.simple_form>
+  <% end %>
   </div>
 
 
 
 
 <%= if @sessions !== [] do %>
+<.simple_form :let={f} for={:check_form}  phx-submit="save sessions">
 <.table
   id="sessions"
   rows={@sessions}>
-  <:col :let={session} label="Session Number"><%= session.session_number %></:col>
-  <:col :let={session} label="Visitor Type"><%= session.group_name %></:col>
-  <:col :let={session} label="Chamber Time From"><%= session.chamber_from_time %></:col>
-  <:col :let={session} label="Chamber Time To"><%= session.chamber_to_time %></:col>
-  <:col :let={session} label="Reporting Time From"><%= session.reporting_from_time %></:col>
-  <:col :let={session} label="Reporting Time To"><%= session.reporting_to_time %></:col>
-  <:col :let={session} label="Seats"><%= session.seats %></:col>
+    <:col :let={session} label="Session Number" ><.input name="session number" type="number" value={session.session_number} phx-click="inc" phx-value-id={session.id}  style="width: 80px;"/></:col>
+    <:col :let={session} label="Visitor Type" ><.input name="visitor type" type="select" value={session.group_name} options={["Group A", "Group B"]} phx-click="inc" phx-value-id={session.id} style="width: 160px;" /></:col>
+    <:col :let={session} label="Chamber Time From" ><.input name="chamber time from" type="time" value={session.chamber_from_time} phx-click="inc" phx-value-id={session.id} /></:col>
+    <:col :let={session} label="Chamber Time To" ><.input name="chamber time to" type="time" value={session.chamber_to_time} phx-click="inc" phx-value-id={session.id} /></:col>
+    <:col :let={session} label="Reporting Time From" ><.input name="reporting time from" type="time" value={session.reporting_from_time} phx-click="inc" phx-value-id={session.id} /></:col>
+    <:col :let={session} label="Reporting Time To" ><.input name="reporting time to" type="time" value={session.reporting_to_time} phx-click="inc" phx-value-id={session.id} /></:col>
+    <:col :let={session} label="Seats" ><.input name="seats" type="text" value={session.seats} phx-click="inc" phx-value-id={session.id} style="width: 60px;"/></:col>  
 </.table>
+</.simple_form>
 
-
-<.link patch={~p"/booking_window_setup/add_session"}>
-    <.button>Add Session</.button>
-</.link>
+    <.button phx-click="add session">Add Session</.button>
 
 <.button phx-click="save">Save</.button>
 
 
 <% end %>
 
-<.modal :if={@live_action in [:add_session]} id="session-modal" show on_cancel={JS.push("clicked")}>
+<%!-- <.modal :if={@live_action in [:add_session]} id="session-modal" show on_cancel={JS.push("clicked")}>
   <.live_component
     module={MmbookingWeb.BookingWindowSetupLive.SessionFormComponent}
     id={:add_session}
@@ -55,4 +69,4 @@
     session_number={@session_number}
     sessions={@sessions}
   />
-</.modal>
+</.modal> --%>
