@@ -70,6 +70,10 @@ defmodule MmbookingWeb.Router do
       live "/sessions/add_session", SessionLive.Index, :add_session
       live "/sessions/add_session/:session_id/edit_session", SessionLive.Index, :edit_session
 
+      live "/booking_window_setup", BookingWindowSetupLive.Index, :index
+      live "/booking_window_setup/add_session", BookingWindowSetupLive.Index, :add_session
+
+
     end
   end
 

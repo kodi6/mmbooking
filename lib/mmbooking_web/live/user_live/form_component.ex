@@ -74,14 +74,13 @@ defmodule MmbookingWeb.UserLive.FormComponent do
   end
 
   defp save_user(socket, :new, user_params) do
-
     case Accounts.register_user(user_params) do
       {:ok, _user} ->
 
         {:noreply,
          socket
          |> put_flash(:info, "User created successfully")
-         |> push_patch(to: ~p"/sessions/?template_id=#{@template_id}")}
+         |> push_patch(to: socket.assigns.patch)}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign_form(socket, changeset)}

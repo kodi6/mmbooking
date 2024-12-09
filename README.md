@@ -30,3 +30,5 @@ alias Mmbooking.Session.Session
 
   alias Mmbooking.Sessions
   alias Mmbooking.Template.Template
+
+  import Ecto.Query

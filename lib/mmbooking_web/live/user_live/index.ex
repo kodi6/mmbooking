@@ -4,7 +4,9 @@ defmodule MmbookingWeb.UserLive.Index do
   alias Mmbooking.Accounts
   alias Mmbooking.Accounts.User
 
-  def mount(_params, _session, socket) do
+
+  @impl true
+  def mount(params, _session, socket) do
     users = Accounts.list_users
     {:ok,
     socket
@@ -34,8 +36,7 @@ defmodule MmbookingWeb.UserLive.Index do
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Users")
-    |> assign(:user, nil)
+    |> assign(:users, Accounts.list_users)
   end
 
 
@@ -43,11 +44,10 @@ defmodule MmbookingWeb.UserLive.Index do
   def handle_event("delete", %{"id" => id}, socket) do
     user = Accounts.get_user!(id)
     {:ok, _} = Accounts.delete_user(user)
-
+    users = Accounts.list_users
     {:noreply,
     socket
-    |> assign(:users, user)
-  }
+    |> assign(:users, users)}
   end
 
 end

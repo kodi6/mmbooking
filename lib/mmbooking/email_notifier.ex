@@ -74,4 +74,13 @@ defmodule Mmbooking.EmailNotifier do
   end
 
 
+  def gmail() do
+    email =
+      new()
+      |> from({"Sender Name", "sender@example.com"})
+      |> to({"Recipient Name", "recipient@example.com"})
+      |> subject("Hello, Swoosh!")
+      |> text_body("This is a simple email body")
+      Mmbooking.Mailer.deliver(email)
+    end
 end
